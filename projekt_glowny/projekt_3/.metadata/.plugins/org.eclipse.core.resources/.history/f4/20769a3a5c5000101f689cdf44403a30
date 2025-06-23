@@ -1,0 +1,237 @@
+grammar org.xtext.example.mydsl.MyDsl
+  with org.eclipse.xtext.common.Terminals
+
+
+// import twojego .ecore
+import "platform:/resource/rzutykoscia2/model/rzutykoscia.ecore" as rzuty
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+Language returns rzuty::Language:
+    statement=Stat
+;
+
+// pojedyncze polecenie
+Stat returns rzuty::Stat:
+    (Sumuj | Sukcesy)
+;
+
+terminal D: 'd';
+
+@Override 
+terminal ID:
+    '^'? ('a'..'z' | 'A'..'Z' | '_')
+         ('a'..'z' | 'A'..'Z' | '_' )*
+;
+
+// SUMUJ ...
+Sumuj returns rzuty::SumStatement:
+    'Sumuj' ('\n')?
+    diceexprsum+=DiceExprSum ( ';' diceexprsum+=DiceExprSum )* ('\n')?
+    ('.' | ',')?
+;
+
+// SUKCESY ...
+Sukcesy returns rzuty::SuccessStatement:
+    'Sukcesy' ('\n')?
+    diceexprsuk+=DiceExprSuk ( ';' diceexprsuk+=DiceExprSuk )* ('\n')?
+    ('.' | ',')?
+;
+
+// suma rzutów
+DiceExprSum returns rzuty::DiceExprSum:
+    (sign=Sign)? mulexpr=MulExpr 
+    (':' sumrule+=RuleSum (',' sumrule+=RuleSum)*)?
+;
+
+// sukcesy rzutów
+DiceExprSuk returns rzuty::DiceExprSuk:
+    (sign=Sign)? mulexpr=MulExpr 
+    (':' successrule+=RuleSuk (',' successrule+=RuleSuk)*)?
+;
+
+// mnożenie (razy)
+MulExpr returns rzuty::MulExpr:
+    formexpr=Form ('razy' num=Num)? 
+    | '(' formexpr=Form ')' ('razy' num=Num)?
+    | '(' formexpr=Form ')'
+;
+
+// elementarna forma
+Form returns rzuty::FormExpr:
+    left=Dice ( operator=Operator right=Num )?
+;
+
+// pojedyncza kostka
+SingleDice returns rzuty::SingleDice:
+    D sides=Num
+;
+
+// wiele kostek
+MultiDice returns rzuty::MultiDice:
+    count=Num D sides=Num
+;
+
+// alternatywa dla Dice
+Dice returns rzuty::Dice:
+    SingleDice | MultiDice
+;
+
+// ------------- RuleSum i podtypy ------------- 
+RuleSum returns rzuty::SumRule:
+    ExplosionRule
+  | DiceMarkSum
+  | DiceDiscSum
+  | DiceRerollSum
+;
+
+ExplosionRule returns rzuty::ExplosionRule:
+    sign=Sign 'wybuchowe' num=Num
+;
+
+DiceMarkSum returns rzuty::DiceMarkSum:
+    'oznacz' mark=Mark
+;
+
+DiceDiscSum returns rzuty::DiceDiscSum:
+    'odrzuc' discard=Discard
+;
+
+DiceRerollSum returns rzuty::DiceRerollSum:
+    'przerzuc' reroll=Reroll
+;
+
+// ------------- RuleSuk i podtypy ------------- 
+RuleSuk returns rzuty::SuccessRule:
+    'sukces' (
+        SuccessThreshold
+      | SuccessMultiplier
+      | SuccessBasic
+    )
+  | DiceMarkSuk
+  | DiceDiscSuk
+  | DiceRerollSuk
+;
+
+SuccessThreshold returns rzuty::SuccessThreshold:
+    hightlow=HighLow num=Num
+;
+
+SuccessMultiplier returns rzuty::SuccessMultiplier:
+    num=Num 'razy' sign=Sign? mult=Num
+;
+
+SuccessBasic returns rzuty::SuccessBasic:
+    num=Num
+;
+
+DiceMarkSuk returns rzuty::DiceMarkSuk:
+    'oznacz' mark=Mark
+;
+
+DiceDiscSuk returns rzuty::DiceDiscSuk:
+    'odrzuc' discard=Discard
+;
+
+DiceRerollSuk returns rzuty::DiceRerollSuk:
+    'przerzuc' reroll=Reroll
+;
+
+// ------------- Mark / Discard / Reroll ------------- 
+Mark returns rzuty::Mark:
+    MarkThreshold | MarkHighest | MarkPosition | MarkValue
+;
+
+MarkThreshold returns rzuty::MarkThan:
+    hightlow=HighLow num=Num
+;
+
+MarkHighest returns rzuty::MarkHigh:
+    hightlow = HighLow
+;
+
+MarkPosition returns rzuty::MarkKol:
+    num=Num firstlast=FirstLast
+;
+
+MarkValue returns rzuty::MarkNum:
+    num=Num
+;
+
+Discard returns rzuty::Discard:
+    DiscardThreshold | DiscardHighest | DiscardPosition | DiscardValue
+;
+
+DiscardThreshold returns rzuty::DiscardThan:
+    hightlow=HighLow num=Num
+;
+
+DiscardHighest returns rzuty::DiscardHigh:
+    hightlow = HighLow
+;
+
+DiscardPosition returns rzuty::DiscardKol:
+    num=Num firstlast=FirstLast
+;
+
+DiscardValue returns rzuty::DiscardNum:
+    num=Num
+;
+
+Reroll returns rzuty::Reroll:
+    RerollThreshold | RerollHighest | RerollPosition | RerollValue
+;
+
+RerollThreshold returns rzuty::RerollThan:
+    hightlow=HighLow num=Num 
+;
+
+RerollHighest returns rzuty::RerollHigh:
+    hightlow = HighLow
+;
+
+RerollPosition returns rzuty::RerollKol:
+    num=Num firstlast=FirstLast
+;
+
+RerollValue returns rzuty::RerollNum:
+    num=Num
+;
+
+// ------------- Typy bazowe ------------- 
+Num returns rzuty::Num:
+   value=EInt
+;
+
+enum Sign returns rzuty::Sign:
+    ADD = '+'
+  | ADD = 'dodawaj'
+  | SUB = 'odejmuj'
+  | SUB = '- '
+;
+
+enum FirstLast returns rzuty::FirstLast:
+    FIRST = 'pierwsze'
+  | LAST  = 'ostatnie'
+;
+
+enum Operator returns rzuty::Operator:
+    ADD = '+'
+  | SUB = '- '
+  | MUL = '*'
+  | DIV = '/'
+;
+
+enum HighLow returns rzuty::HighLow:
+    HIGH = 'najwyzsze'
+  | LOW  = 'najnizsze'
+  | HIGH = 'wiecej niz'
+  | LOW  = 'mniej niz'
+;
+
+EInt returns ecore::EInt:
+    '-'? INT
+;
+
+EString returns ecore::EString:
+    STRING
+;

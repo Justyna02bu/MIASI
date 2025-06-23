@@ -1,0 +1,179 @@
+grammar org.xtext.example.mydsl.MyDsl
+  with org.eclipse.xtext.common.Terminals
+
+import "platform:/resource/rzutykoscia2/model/rzutykoscia.ecore" 
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+
+Statement returns Stat:
+    Sumuj | Sukcesy
+;
+
+Sumuj returns SumStatement:
+    'SUMUJ' diceexprsum+=DiceExprSum ( ';' diceexprsum+=DiceExprSum )* ('.' | ',')?
+;
+
+Sukcesy returns SuccessStatement:
+    'SUKCESY' diceexprsuk+=DiceExprSuk ( ';' diceexprsuk+=DiceExprSuk )* ('.' | ',')?
+;
+
+DiceExprSum returns DiceExprSum:
+    ('+'|'-')? mulexpr=MulExpr (':' sumrule+=RuleSum (',' sumrule+=RuleSum)*)?
+;
+
+DiceExprSuk returns DiceExprSuk:
+    ('+'|'-')? mulexpr=MulExpr (':' successrule+=RuleSuk (',' successrule+=RuleSuk)*)?
+;
+
+MulExpr returns MulExpr:
+        formexpr=Form
+  | '(' formexpr=Form ')' ('razy' num=Num)?
+;
+
+Form returns FormExpr:
+    left=(Dice) ( operator=Operator right=Num )?
+;
+
+SingleDice returns SingleDice:
+    'd' sides=Num
+;
+
+MultiDice returns MultiDice:
+    count=Num 'd' sides=Num
+;
+
+Dice returns Dice:
+    SingleDice | MultiDice
+;
+
+ExplosionRule returns ExplosionRule:
+    ('dodawaj' | 'odejmuj') 'wybuchowe' num=Num
+;
+
+DiceMarkSum returns DiceMarkSum:
+    'oznacz' mark=Mark
+;
+
+DiceDiscSum returns DiceDiscSum:
+    'odrzuc' discard=Discard
+;
+
+DiceRerollSum returns DiceRerollSum:
+    'przerzuc' reroll=Reroll
+;
+
+RuleSum returns SumRule:
+    ExplosionRule
+  | DiceMarkSum
+  | DiceDiscSum
+  | DiceRerollSum
+;
+
+SuccessThreshold returns SuccessThreshold:
+    'sukces' ('wiecej niz' | 'mniej niz') num=Num
+;
+
+SuccessMultiplier returns SuccessMultiplier:
+    'sukces' num=Num 'razy' mult=Num
+;
+
+SuccessBasic returns SuccessBasic:
+    'sukces' ('sukces' | num=Num)
+;
+
+DiceMarkSuk returns DiceMarkSuk:
+    'oznacz' mark=Mark
+;
+
+DiceDiscSuk returns DiceDiscSuk:
+    'odrzuc' discard=Discard
+;
+
+DiceRerollSuk returns DiceRerollSuk:
+    'przerzuc' reroll=Reroll
+;
+
+RuleSuk returns SuccessRule:
+    SuccessThreshold
+  | SuccessMultiplier
+  | SuccessBasic
+  | DiceMarkSuk
+  | DiceDiscSuk
+  | DiceRerollSuk
+;
+
+MarkThreshold returns MarkThan:
+    ('wiecej niz' | 'mniej niz') num=Num
+;
+MarkHighest returns MarkHigh:
+    ('najwyzsze' | 'najnizsze')
+;
+MarkPosition returns MarkKol:
+    firstlast=FirstLast num=Num
+;
+MarkValue returns MarkNum:
+    num=Num
+;
+Mark returns Mark:
+    MarkThreshold 
+  | MarkHighest 
+  | MarkPosition 
+  | MarkValue
+;
+
+DiscardThreshold returns DiscardThan:
+    ('wiecej niz' | 'mniej niz') num=Num
+;
+DiscardHighest returns DiscardHigh:
+    ('najwyzsze' | 'najnizsze')
+;
+DiscardPosition returns DiscardKol:
+    firstlast=FirstLast num=Num
+;
+DiscardValue returns DiscardNum:
+    num=Num
+;
+Discard returns Discard:
+    DiscardThreshold 
+  | DiscardHighest 
+  | DiscardPosition 
+  | DiscardValue
+;
+
+RerollThreshold returns RerollThan:
+    ('wiecej niz' | 'mniej niz') num=Num
+;
+RerollHighest returns RerollHigh:
+    ('najwyzsze' | 'najnizsze')
+;
+RerollPosition returns RerollKol:
+    firstlast=FirstLast num=Num
+;
+RerollValue returns RerollNum:
+    num=Num
+;
+Reroll returns Reroll:
+    RerollThreshold 
+  | RerollHighest 
+  | RerollPosition 
+  | RerollValue
+;
+Num returns Num:
+    'Num' '{' 'value' value=EInt '}'
+;
+
+FirstLast returns FirstLast:
+	'FIRST' | 'LAST'
+;
+
+Operator returns Operator:
+    '+' | '-' | '*' | '/' | 'razy'
+;
+
+EInt returns ecore::EInt:
+    '-'? INT
+;
+
+EString returns ecore::EString:
+    STRING
+;

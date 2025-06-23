@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Rzuty:Language xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Rzuty="http://www.example.org/rzutykoscia">
+  <statement xsi:type="Rzuty:SumStatement">
+    <diceexprsum>
+      <mulexpr>
+        <num value="3"/>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="6"/>
+            <count value="10"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:ExplosionRule">
+        <num value="6"/>
+      </sumrule>
+      <sumrule xsi:type="Rzuty:ExplosionRule" sign="SUB">
+        <num value="1"/>
+      </sumrule>
+    </diceexprsum>
+    <diceexprsum sign="SUB">
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="8"/>
+            <count value="10"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+    </diceexprsum>
+    <diceexprsum>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="4"/>
+            <count value="7"/>
+          </left>
+          <right value="2"/>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:DiceMarkSum">
+        <mark xsi:type="Rzuty:MarkThan">
+          <num value="2"/>
+        </mark>
+      </sumrule>
+    </diceexprsum>
+    <diceexprsum>
+      <mulexpr>
+        <num value="3"/>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="6"/>
+            <count value="10"/>
+          </left>
+          <right value="3"/>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:DiceMarkSum">
+        <mark xsi:type="Rzuty:MarkHigh"/>
+      </sumrule>
+    </diceexprsum>
+    <diceexprsum>
+      <mulexpr>
+        <num value="1"/>
+        <formexpr operator="MUL">
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="6"/>
+            <count value="10"/>
+          </left>
+          <right value="2"/>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:ExplosionRule">
+        <num value="6"/>
+      </sumrule>
+      <sumrule xsi:type="Rzuty:ExplosionRule" sign="SUB">
+        <num value="1"/>
+      </sumrule>
+    </diceexprsum>
+  </statement>
+</Rzuty:Language>

@@ -1,0 +1,6 @@
+Sumuj
+10d6 razy 3: dodawaj wybuchowe 6, odejmuj wybuchowe 1;
+- 10d8;
++ 7d4 + 2 : oznacz wiecej niz 2;
+(10d6 + 3) razy 3: oznacz najwyzsze;
+(10d6 * 2) razy 1: dodawaj wybuchowe 6, odejmuj wybuchowe 1

@@ -1,0 +1,18 @@
+Sukcesy
+5d10: sukces wiecej niz 6, sukces 10, sukces 1 razy -1;
+- 5d10: sukces wiecej niz 6;
++ 5d20: sukces wiecej niz 6,oznacz wiecej niz 2;
+5d30: sukces wiecej niz 6,oznacz najwyzsze;
+5d20: sukces wiecej niz 6, oznacz 2;
+5d20: sukces wiecej niz 6, oznacz 2 ostatnie;
+5d20: sukces wiecej niz 6, odrzuc wiecej niz 2;
+5d10: sukces wiecej niz 6, odrzuc najwyzsze;
+5d20: sukces wiecej niz 6, odrzuc 2;
+5d20: sukces wiecej niz 6, odrzuc 2 ostatnie;
+5d10: sukces wiecej niz 6, przerzuc wiecej niz 2;
+5d10: sukces wiecej niz 6, przerzuc mniej niz 2;
+5d10: sukces wiecej niz 6, przerzuc najwyzsze;
+5d10: sukces wiecej niz 6, przerzuc najnizsze;
+5d10: sukces wiecej niz 6, przerzuc 2;
+5d10: sukces wiecej niz 6, przerzuc 2 pierwsze;
+5d10: sukces wiecej niz 6, przerzuc 2 ostatnie

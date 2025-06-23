@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/rzutykoscia2/src" modelPluginID="rzutykoscia2"
+    modelName="Rzutykoscia232" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="17.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>rzutykoscia.ecore</foreignModel>
+  <genPackages prefix="Rzutykoscia" disposableProviderFactory="true" ecorePackage="rzutykoscia.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rzutykoscia.ecore#//Operator">
+      <genEnumLiterals ecoreEnumLiteral="rzutykoscia.ecore#//Operator/ADD"/>
+      <genEnumLiterals ecoreEnumLiteral="rzutykoscia.ecore#//Operator/SUB"/>
+      <genEnumLiterals ecoreEnumLiteral="rzutykoscia.ecore#//Operator/MUL"/>
+      <genEnumLiterals ecoreEnumLiteral="rzutykoscia.ecore#//Operator/DIV"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rzutykoscia.ecore#//Sign">
+      <genEnumLiterals ecoreEnumLiteral="rzutykoscia.ecore#//Sign/ADD"/>
+      <genEnumLiterals ecoreEnumLiteral="rzutykoscia.ecore#//Sign/SUB"/>
+      <genEnumLiterals ecoreEnumLiteral="rzutykoscia.ecore#//Sign/NONE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rzutykoscia.ecore#//HighLow">
+      <genEnumLiterals ecoreEnumLiteral="rzutykoscia.ecore#//HighLow/HIGH"/>
+      <genEnumLiterals ecoreEnumLiteral="rzutykoscia.ecore#//HighLow/LOW"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rzutykoscia.ecore#//FirstLast">
+      <genEnumLiterals ecoreEnumLiteral="rzutykoscia.ecore#//FirstLast/FIRST"/>
+      <genEnumLiterals ecoreEnumLiteral="rzutykoscia.ecore#//FirstLast/LAST"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rzutykoscia.ecore#//MulDiv">
+      <genEnumLiterals ecoreEnumLiteral="rzutykoscia.ecore#//MulDiv/MUL"/>
+      <genEnumLiterals ecoreEnumLiteral="rzutykoscia.ecore#//MulDiv/DIV"/>
+    </genEnums>
+    <genClasses ecoreClass="rzutykoscia.ecore#//Language">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//Language/statement"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rzutykoscia.ecore#//Stat"/>
+    <genClasses ecoreClass="rzutykoscia.ecore#//SumStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//SumStatement/diceexprsum"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//SuccessStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//SuccessStatement/diceexprsuk"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rzutykoscia.ecore#//DiceExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//DiceExpr/mulexpr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rzutykoscia.ecore#//DiceExpr/sign"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//DiceExprSum">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//DiceExprSum/sumrule"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//DiceExprSuk">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//DiceExprSuk/successrule"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//MulExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//MulExpr/num"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//MulExpr/formexpr"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//FormExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//FormExpr/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//FormExpr/right"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rzutykoscia.ecore#//FormExpr/operator"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rzutykoscia.ecore#//Dice">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//Dice/sides"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//SingleDice"/>
+    <genClasses ecoreClass="rzutykoscia.ecore#//MultiDice">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//MultiDice/count"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//Num">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rzutykoscia.ecore#//Num/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rzutykoscia.ecore#//SumRule"/>
+    <genClasses image="false" ecoreClass="rzutykoscia.ecore#//SuccessRule"/>
+    <genClasses ecoreClass="rzutykoscia.ecore#//ExplosionRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//ExplosionRule/num"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rzutykoscia.ecore#//ExplosionRule/sign"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//DiceMarkSum">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//DiceMarkSum/mark"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//DiceDiscSum">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//DiceDiscSum/discard"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//DiceRerollSum">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//DiceRerollSum/reroll"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//SuccessBasic">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//SuccessBasic/num"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rzutykoscia.ecore#//SuccessBasic/negated"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//SuccessThreshold">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rzutykoscia.ecore#//SuccessThreshold/hightlow"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//SuccessThreshold/num"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//SuccessMultiplier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rzutykoscia.ecore#//SuccessMultiplier/sign"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//SuccessMultiplier/mult"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//SuccessMultiplier/num"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//DiceMarkSuk">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//DiceMarkSuk/mark"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//DiceDiscSuk">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//DiceDiscSuk/discard"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//DiceRerollSuk">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//DiceRerollSuk/reroll"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rzutykoscia.ecore#//Mark"/>
+    <genClasses image="false" ecoreClass="rzutykoscia.ecore#//Discard"/>
+    <genClasses image="false" ecoreClass="rzutykoscia.ecore#//Reroll"/>
+    <genClasses ecoreClass="rzutykoscia.ecore#//MarkThan">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rzutykoscia.ecore#//MarkThan/hightlow"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//MarkThan/num"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//MarkHigh">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rzutykoscia.ecore#//MarkHigh/hightlow"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//MarkKol">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//MarkKol/num"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rzutykoscia.ecore#//MarkKol/firstlast"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//MarkNum">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//MarkNum/num"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//RerollHigh">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rzutykoscia.ecore#//RerollHigh/hightlow"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//RerollThan">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rzutykoscia.ecore#//RerollThan/hightlow"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//RerollThan/num"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//RerollKol">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//RerollKol/num"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rzutykoscia.ecore#//RerollKol/firstlast"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//RerollNum">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//RerollNum/num"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//DiscardKol">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//DiscardKol/num"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rzutykoscia.ecore#//DiscardKol/firstlast"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//DiscardNum">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//DiscardNum/num"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//DiscardHigh">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rzutykoscia.ecore#//DiscardHigh/hightlow"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//DiscardThan">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rzutykoscia.ecore#//DiscardThan/hightlow"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//DiscardThan/num"/>
+    </genClasses>
+    <genClasses ecoreClass="rzutykoscia.ecore#//SuccessCompositeRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rzutykoscia.ecore#//SuccessCompositeRule/successrule"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

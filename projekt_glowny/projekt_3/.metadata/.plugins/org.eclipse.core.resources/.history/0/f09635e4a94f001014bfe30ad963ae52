@@ -1,0 +1,85 @@
+package org.xtext.example.mydsl.ui.handlers;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.handlers.HandlerUtil;
+import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.ui.editor.XtextEditor;
+import org.xtext.example.mydsl.ui.antler.src.ExprLexer;
+import org.xtext.example.mydsl.ui.antler.src.ExprParser;
+import org.xtext.example.mydsl.ui.antler.src.DiceVisitor;
+
+public class RunAntlrHandler extends AbstractHandler {
+
+    @Override
+    public Object execute(ExecutionEvent event) throws ExecutionException {
+    	System.out.println("[DEBUG] Handler wywołany");
+
+        IEditorPart editorPart = HandlerUtil.getActiveEditor(event);
+        
+        if (editorPart instanceof XtextEditor xtextEditor) {
+            xtextEditor.getDocument().readOnly((XtextResource resource) -> {
+                try {
+                    URI uri = resource.getURI();
+                    String platformString = uri.toPlatformString(true);
+
+                    if (platformString == null) {
+                        MessageDialog.openError(HandlerUtil.getActiveShell(event),
+                                "Błąd uruchamiania",
+                                "Nie można uzyskać ścieżki do pliku. Upewnij się, że plik został zapisany.");
+                        return null;
+                    }
+
+                    IFile iFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(platformString));
+                    String filePath = iFile.getLocation().toOSString();
+
+                    System.out.println("[ANTLR Handler] Ścieżka pliku: " + filePath);
+
+                    // Wczytaj treść pliku jako String
+                    String content = Files.readString(Paths.get(filePath));
+                    System.out.println("[ANTLR Handler] Treść pliku:\n" + content);
+
+                    // Parsowanie ANTLR
+                    CharStream input = CharStreams.fromString(content);
+                    ExprLexer lexer = new ExprLexer(input);
+                    CommonTokenStream tokens = new CommonTokenStream(lexer);
+                    ExprParser parser = new ExprParser(tokens);
+
+                    var tree = parser.program(); // reguła startowa
+                    DiceVisitor visitor = new DiceVisitor();
+                    visitor.visit(tree);
+
+                    String result = visitor.getFinalResult();
+                    System.out.println("[ANTLR Handler] Wynik:\n" + result);
+
+                    // Wyświetlenie wyniku
+                    MessageDialog.openInformation(HandlerUtil.getActiveShell(event),
+                            "Wynik analizy ANTLR",
+                            result);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    MessageDialog.openError(HandlerUtil.getActiveShell(event),
+                            "Błąd działania ANTLR",
+                            "Wystąpił wyjątek: " + e.getMessage());
+                }
+                return null;
+            });
+        }
+
+        return null;
+    }
+}

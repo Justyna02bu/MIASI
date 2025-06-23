@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Rzuty:Language xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Rzuty="http://www.example.org/rzutykoscia">
+  <statement xsi:type="Rzuty:SuccessStatement">
+    <diceexprsuk>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="10"/>
+            <count value="5"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <successrule xsi:type="Rzuty:SuccessThreshold">
+        <num value="6"/>
+      </successrule>
+      <successrule xsi:type="Rzuty:SuccessBasic">
+        <num value="10"/>
+      </successrule>
+      <successrule xsi:type="Rzuty:SuccessMultiplier">
+        <mult value="-1"/>
+        <num value="1"/>
+      </successrule>
+    </diceexprsuk>
+    <diceexprsuk sign="SUB">
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="10"/>
+            <count value="5"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <successrule xsi:type="Rzuty:SuccessThreshold">
+        <num value="6"/>
+      </successrule>
+    </diceexprsuk>
+    <diceexprsuk>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="20"/>
+            <count value="5"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <successrule xsi:type="Rzuty:SuccessThreshold">
+        <num value="6"/>
+      </successrule>
+      <successrule xsi:type="Rzuty:DiceMarkSuk">
+        <mark xsi:type="Rzuty:MarkThan">
+          <num value="2"/>
+        </mark>
+      </successrule>
+    </diceexprsuk>
+    <diceexprsuk>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="30"/>
+            <count value="5"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <successrule xsi:type="Rzuty:SuccessThreshold">
+        <num value="6"/>
+      </successrule>
+      <successrule xsi:type="Rzuty:DiceMarkSuk">
+        <mark xsi:type="Rzuty:MarkHigh"/>
+      </successrule>
+    </diceexprsuk>
+    <diceexprsuk>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="20"/>
+            <count value="5"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <successrule xsi:type="Rzuty:SuccessThreshold">
+        <num value="6"/>
+      </successrule>
+      <successrule xsi:type="Rzuty:DiceMarkSuk">
+        <mark xsi:type="Rzuty:MarkNum">
+          <num value="2"/>
+        </mark>
+      </successrule>
+    </diceexprsuk>
+    <diceexprsuk>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="20"/>
+            <count value="5"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <successrule xsi:type="Rzuty:SuccessThreshold">
+        <num value="6"/>
+      </successrule>
+      <successrule xsi:type="Rzuty:DiceMarkSuk">
+        <mark xsi:type="Rzuty:MarkKol" firstlast="LAST">
+          <num value="2"/>
+        </mark>
+      </successrule>
+    </diceexprsuk>
+    <diceexprsuk>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="20"/>
+            <count value="5"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <successrule xsi:type="Rzuty:SuccessThreshold">
+        <num value="6"/>
+      </successrule>
+      <successrule xsi:type="Rzuty:DiceDiscSuk">
+        <discard xsi:type="Rzuty:DiscardThan">
+          <num value="2"/>
+        </discard>
+      </successrule>
+    </diceexprsuk>
+    <diceexprsuk>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="10"/>
+            <count value="5"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <successrule xsi:type="Rzuty:SuccessThreshold">
+        <num value="6"/>
+      </successrule>
+      <successrule xsi:type="Rzuty:DiceDiscSuk">
+        <discard xsi:type="Rzuty:DiscardHigh"/>
+      </successrule>
+    </diceexprsuk>
+    <diceexprsuk>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="20"/>
+            <count value="5"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <successrule xsi:type="Rzuty:SuccessThreshold">
+        <num value="6"/>
+      </successrule>
+      <successrule xsi:type="Rzuty:DiceDiscSuk">
+        <discard xsi:type="Rzuty:DiscardNum">
+          <num value="2"/>
+        </discard>
+      </successrule>
+    </diceexprsuk>
+    <diceexprsuk>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="20"/>
+            <count value="5"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <successrule xsi:type="Rzuty:SuccessThreshold">
+        <num value="6"/>
+      </successrule>
+      <successrule xsi:type="Rzuty:DiceDiscSuk">
+        <discard xsi:type="Rzuty:DiscardKol" firstlast="LAST">
+          <num value="2"/>
+        </discard>
+      </successrule>
+    </diceexprsuk>
+    <diceexprsuk>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="10"/>
+            <count value="5"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <successrule xsi:type="Rzuty:SuccessThreshold">
+        <num value="6"/>
+      </successrule>
+      <successrule xsi:type="Rzuty:DiceRerollSuk">
+        <reroll xsi:type="Rzuty:RerollThan">
+          <num value="2"/>
+        </reroll>
+      </successrule>
+    </diceexprsuk>
+    <diceexprsuk>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="10"/>
+            <count value="5"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <successrule xsi:type="Rzuty:SuccessThreshold">
+        <num value="6"/>
+      </successrule>
+      <successrule xsi:type="Rzuty:DiceRerollSuk">
+        <reroll xsi:type="Rzuty:RerollThan" hightlow="LOW">
+          <num value="2"/>
+        </reroll>
+      </successrule>
+    </diceexprsuk>
+    <diceexprsuk>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="10"/>
+            <count value="5"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <successrule xsi:type="Rzuty:SuccessThreshold">
+        <num value="6"/>
+      </successrule>
+      <successrule xsi:type="Rzuty:DiceRerollSuk">
+        <reroll xsi:type="Rzuty:RerollHigh"/>
+      </successrule>
+    </diceexprsuk>
+    <diceexprsuk>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="10"/>
+            <count value="5"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <successrule xsi:type="Rzuty:SuccessThreshold">
+        <num value="6"/>
+      </successrule>
+      <successrule xsi:type="Rzuty:DiceRerollSuk">
+        <reroll xsi:type="Rzuty:RerollHigh" hightlow="LOW"/>
+      </successrule>
+    </diceexprsuk>
+    <diceexprsuk>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="10"/>
+            <count value="5"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <successrule xsi:type="Rzuty:SuccessThreshold">
+        <num value="6"/>
+      </successrule>
+      <successrule xsi:type="Rzuty:DiceRerollSuk">
+        <reroll xsi:type="Rzuty:RerollNum">
+          <num value="2"/>
+        </reroll>
+      </successrule>
+    </diceexprsuk>
+    <diceexprsuk>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="10"/>
+            <count value="5"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <successrule xsi:type="Rzuty:SuccessThreshold">
+        <num value="6"/>
+      </successrule>
+      <successrule xsi:type="Rzuty:DiceRerollSuk">
+        <reroll xsi:type="Rzuty:RerollKol">
+          <num value="2"/>
+        </reroll>
+      </successrule>
+    </diceexprsuk>
+    <diceexprsuk>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="10"/>
+            <count value="5"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <successrule xsi:type="Rzuty:SuccessThreshold">
+        <num value="6"/>
+      </successrule>
+      <successrule xsi:type="Rzuty:DiceRerollSuk">
+        <reroll xsi:type="Rzuty:RerollKol" firstlast="LAST">
+          <num value="2"/>
+        </reroll>
+      </successrule>
+    </diceexprsuk>
+  </statement>
+</Rzuty:Language>

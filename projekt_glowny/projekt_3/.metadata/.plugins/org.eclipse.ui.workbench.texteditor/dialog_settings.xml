@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<item key="selection" value=""/>
+		<list key="findhistory">
+			<item value="hightlow"/>
+			<item value="[DEBUG] Handler wywołany"/>
+			<item value="&lt;extension point=&quot;org.eclipse.ui.commands&quot;&gt;"/>
+			<item value="&lt;extension point=&quot;org.eclipse.core.expressions.definitions&quot;&gt;"/>
+			<item value="org.xtext.example.mydsl.MyDsl.Editor.opened"/>
+			<item value="HighLow"/>
+			<item value="antler"/>
+		</list>
+		<list key="replacehistory">
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="1337"/>
+		<item key="DIALOG_Y_ORIGIN" value="194"/>
+		<item key="DIALOG_WIDTH" value="414"/>
+		<item key="DIALOG_HEIGHT" value="454"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+</section>

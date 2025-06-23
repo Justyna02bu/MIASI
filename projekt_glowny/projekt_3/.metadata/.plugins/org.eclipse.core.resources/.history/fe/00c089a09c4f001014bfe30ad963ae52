@@ -1,0 +1,52 @@
+package org.xtext.example.mydsl.ui.handlers;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ui.handlers.HandlerUtil;
+import org.xtext.example.mydsl.ui.antler.gen.ExprLexer;
+import org.xtext.example.mydsl.ui.antler.gen.ExprParser;
+import org.xtext.example.mydsl.ui.antler.src.DiceVisitor;
+
+public class RunAntlrHandler extends AbstractHandler {
+
+    @Override
+    public Object execute(ExecutionEvent event) throws ExecutionException {
+        var selection = HandlerUtil.getCurrentSelection(event);
+        if (selection instanceof IStructuredSelection structured && structured.getFirstElement() instanceof IFile iFile) {
+            try {
+                String filePath = iFile.getLocation().toOSString();
+                CharStream input = CharStreams.fromFileName(filePath);
+
+                ExprLexer lexer = new ExprLexer(input);
+                CommonTokenStream tokens = new CommonTokenStream(lexer);
+                ExprParser parser = new ExprParser(tokens);
+
+                var tree = parser.program(); // lub inna reguła startowa
+                DiceVisitor visitor = new DiceVisitor();
+                visitor.visit(tree);
+
+                MessageDialog.openInformation(HandlerUtil.getActiveShell(event),
+                        "Wynik działania ANTLR",
+                        visitor.getFinalResult());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                MessageDialog.openError(HandlerUtil.getActiveShell(event),
+                        "Błąd ANTLR",
+                        "Wystąpił wyjątek:\n" + e.getMessage());
+            }
+        }
+        return null;
+    }
+}

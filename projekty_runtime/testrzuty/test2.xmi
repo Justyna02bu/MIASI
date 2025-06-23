@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Rzuty:Language xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Rzuty="http://www.example.org/rzutykoscia">
+  <statement xsi:type="Rzuty:SumStatement">
+    <diceexprsum>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="6"/>
+            <count value="10"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:ExplosionRule">
+        <num value="6"/>
+      </sumrule>
+      <sumrule xsi:type="Rzuty:ExplosionRule" sign="SUB">
+        <num value="1"/>
+      </sumrule>
+    </diceexprsum>
+    <diceexprsum sign="SUB">
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="8"/>
+            <count value="10"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+    </diceexprsum>
+    <diceexprsum>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="4"/>
+            <count value="7"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:DiceMarkSum">
+        <mark xsi:type="Rzuty:MarkThan">
+          <num value="2"/>
+        </mark>
+      </sumrule>
+    </diceexprsum>
+    <diceexprsum>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="6"/>
+            <count value="10"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:DiceMarkSum">
+        <mark xsi:type="Rzuty:MarkHigh"/>
+      </sumrule>
+    </diceexprsum>
+    <diceexprsum>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="20"/>
+            <count value="5"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:DiceMarkSum">
+        <mark xsi:type="Rzuty:MarkNum">
+          <num value="2"/>
+        </mark>
+      </sumrule>
+    </diceexprsum>
+    <diceexprsum>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="20"/>
+            <count value="10"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:DiceMarkSum">
+        <mark xsi:type="Rzuty:MarkKol" firstlast="LAST">
+          <num value="2"/>
+        </mark>
+      </sumrule>
+    </diceexprsum>
+    <diceexprsum>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="4"/>
+            <count value="7"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:DiceDiscSum">
+        <discard xsi:type="Rzuty:DiscardThan">
+          <num value="2"/>
+        </discard>
+      </sumrule>
+    </diceexprsum>
+    <diceexprsum>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="6"/>
+            <count value="10"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:DiceDiscSum">
+        <discard xsi:type="Rzuty:DiscardHigh"/>
+      </sumrule>
+    </diceexprsum>
+    <diceexprsum>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="20"/>
+            <count value="5"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:DiceDiscSum">
+        <discard xsi:type="Rzuty:DiscardNum">
+          <num value="2"/>
+        </discard>
+      </sumrule>
+    </diceexprsum>
+    <diceexprsum>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="20"/>
+            <count value="10"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:DiceDiscSum">
+        <discard xsi:type="Rzuty:DiscardKol" firstlast="LAST">
+          <num value="2"/>
+        </discard>
+      </sumrule>
+    </diceexprsum>
+    <diceexprsum>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="6"/>
+            <count value="10"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:DiceRerollSum">
+        <reroll xsi:type="Rzuty:RerollThan">
+          <num value="5"/>
+        </reroll>
+      </sumrule>
+    </diceexprsum>
+    <diceexprsum>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="6"/>
+            <count value="10"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:DiceRerollSum">
+        <reroll xsi:type="Rzuty:RerollThan" hightlow="LOW">
+          <num value="3"/>
+        </reroll>
+      </sumrule>
+    </diceexprsum>
+    <diceexprsum>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="6"/>
+            <count value="10"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:DiceRerollSum">
+        <reroll xsi:type="Rzuty:RerollHigh"/>
+      </sumrule>
+    </diceexprsum>
+    <diceexprsum>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="6"/>
+            <count value="10"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:DiceRerollSum">
+        <reroll xsi:type="Rzuty:RerollHigh" hightlow="LOW"/>
+      </sumrule>
+    </diceexprsum>
+    <diceexprsum>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="6"/>
+            <count value="10"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:DiceRerollSum">
+        <reroll xsi:type="Rzuty:RerollNum">
+          <num value="4"/>
+        </reroll>
+      </sumrule>
+    </diceexprsum>
+    <diceexprsum>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="6"/>
+            <count value="10"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:DiceRerollSum">
+        <reroll xsi:type="Rzuty:RerollKol">
+          <num value="3"/>
+        </reroll>
+      </sumrule>
+    </diceexprsum>
+    <diceexprsum>
+      <mulexpr>
+        <formexpr>
+          <left xsi:type="Rzuty:MultiDice">
+            <sides value="6"/>
+            <count value="10"/>
+          </left>
+        </formexpr>
+      </mulexpr>
+      <sumrule xsi:type="Rzuty:DiceRerollSum">
+        <reroll xsi:type="Rzuty:RerollKol" firstlast="LAST">
+          <num value="2"/>
+        </reroll>
+      </sumrule>
+    </diceexprsum>
+  </statement>
+</Rzuty:Language>

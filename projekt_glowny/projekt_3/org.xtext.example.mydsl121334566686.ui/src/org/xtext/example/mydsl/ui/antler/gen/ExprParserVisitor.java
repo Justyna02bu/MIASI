@@ -1,0 +1,225 @@
+package org.xtext.example.mydsl.ui.antler.gen;
+
+import org.antlr.v4.runtime.tree.ParseTreeVisitor;
+import org.xtext.example.mydsl.ui.antler.src.ExprParser;
+
+/**
+ * This interface defines a complete generic visitor for a parse tree produced
+ * by {@link ExprParser}.
+ *
+ * @param <T> The return type of the visit operation. Use {@link Void} for
+ * operations with no return type.
+ */
+public interface ExprParserVisitor<T> extends ParseTreeVisitor<T> {
+	/**
+	 * Visit a parse tree produced by {@link ExprParser#program}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitProgram(ExprParser.ProgramContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ExprParser#stat}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStat(ExprParser.StatContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ExprParser#diceExprSum}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDiceExprSum(ExprParser.DiceExprSumContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ExprParser#diceExprSuk}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDiceExprSuk(ExprParser.DiceExprSukContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ExprParser#mul}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMul(ExprParser.MulContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ExprParser#form}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForm(ExprParser.FormContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SingleDice}
+	 * labeled alternative in {@link ExprParser#dice}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSingleDice(ExprParser.SingleDiceContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MultiDice}
+	 * labeled alternative in {@link ExprParser#dice}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMultiDice(ExprParser.MultiDiceContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SuccessRule}
+	 * labeled alternative in {@link ExprParser#rulesukces}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSuccessRule(ExprParser.SuccessRuleContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SuccessThreshold}
+	 * labeled alternative in {@link ExprParser#rulesukces}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSuccessThreshold(ExprParser.SuccessThresholdContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SuccessMultiplier}
+	 * labeled alternative in {@link ExprParser#rulesukces}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSuccessMultiplier(ExprParser.SuccessMultiplierContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DiceMarkSuk}
+	 * labeled alternative in {@link ExprParser#rulesukces}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDiceMarkSuk(ExprParser.DiceMarkSukContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DiceDiscSuk}
+	 * labeled alternative in {@link ExprParser#rulesukces}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDiceDiscSuk(ExprParser.DiceDiscSukContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DiceRerollSuk}
+	 * labeled alternative in {@link ExprParser#rulesukces}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDiceRerollSuk(ExprParser.DiceRerollSukContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ExplosionRule}
+	 * labeled alternative in {@link ExprParser#rulesums}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExplosionRule(ExprParser.ExplosionRuleContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DiceMarkSum}
+	 * labeled alternative in {@link ExprParser#rulesums}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDiceMarkSum(ExprParser.DiceMarkSumContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DiceDiscSum}
+	 * labeled alternative in {@link ExprParser#rulesums}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDiceDiscSum(ExprParser.DiceDiscSumContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DiceRerollSum}
+	 * labeled alternative in {@link ExprParser#rulesums}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDiceRerollSum(ExprParser.DiceRerollSumContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MarkThan}
+	 * labeled alternative in {@link ExprParser#mark}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMarkThan(ExprParser.MarkThanContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MarkHigh}
+	 * labeled alternative in {@link ExprParser#mark}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMarkHigh(ExprParser.MarkHighContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MarkKol}
+	 * labeled alternative in {@link ExprParser#mark}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMarkKol(ExprParser.MarkKolContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MarkNum}
+	 * labeled alternative in {@link ExprParser#mark}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMarkNum(ExprParser.MarkNumContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DiscardThan}
+	 * labeled alternative in {@link ExprParser#discard}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDiscardThan(ExprParser.DiscardThanContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DiscardHigh}
+	 * labeled alternative in {@link ExprParser#discard}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDiscardHigh(ExprParser.DiscardHighContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DiscardKol}
+	 * labeled alternative in {@link ExprParser#discard}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDiscardKol(ExprParser.DiscardKolContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DiscardNum}
+	 * labeled alternative in {@link ExprParser#discard}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDiscardNum(ExprParser.DiscardNumContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code RerollThen}
+	 * labeled alternative in {@link ExprParser#reroll}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRerollThen(ExprParser.RerollThenContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code RerollHight}
+	 * labeled alternative in {@link ExprParser#reroll}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRerollHight(ExprParser.RerollHightContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code RerollKol}
+	 * labeled alternative in {@link ExprParser#reroll}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRerollKol(ExprParser.RerollKolContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code RerollNum}
+	 * labeled alternative in {@link ExprParser#reroll}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRerollNum(ExprParser.RerollNumContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Number}
+	 * labeled alternative in {@link ExprParser#num}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumber(ExprParser.NumberContext ctx);
+}

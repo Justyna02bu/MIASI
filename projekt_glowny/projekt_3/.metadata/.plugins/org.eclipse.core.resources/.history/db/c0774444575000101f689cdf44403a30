@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Rzutykoscia" nsURI="http://www.example.org/rzutykoscia" nsPrefix="Rzuty">
+  <eClassifiers xsi:type="ecore:EClass" name="Language">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statement" lowerBound="1"
+        eType="#//Stat" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Główna kompozycja metamodlu"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Stat" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="klasa będąca wzorcem dla SUMUJ lub SUKCESY"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SumStatement" eSuperTypes="#//Stat">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="SUMUJ"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="diceexprsum" lowerBound="1"
+        upperBound="-1" eType="#//DiceExprSum" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Lista wyrażeń SUMUJ"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SuccessStatement" eSuperTypes="#//Stat">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="SUKCESY"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="diceexprsuk" lowerBound="1"
+        upperBound="-1" eType="#//DiceExprSuk" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Lista wyrażeń SUKCESY"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DiceExpr" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Klasa będąca wzorcem dla rzutów kością zależnie czy ją to sumy czy sukcesy"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mulexpr" lowerBound="1"
+        eType="#//MulExpr" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="&#x9;Wyrażenie mnożenia lub nie&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sign" eType="#//Sign"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DiceExprSum" eSuperTypes="#//DiceExpr">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="rzuty kością z sumą, konkretnie kontener na zasady"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sumrule" upperBound="-1"
+        eType="#//SumRule" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Reguły sumowania"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DiceExprSuk" eSuperTypes="#//DiceExpr">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="rzytu kością z sukcesami, konkretnie kontener na zasady"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="successrule" upperBound="-1"
+        eType="#//SuccessRule" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="&#x9;Reguły sukcesów"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MulExpr">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="odpowida za to ile razy ma byc wykonany dany rzut"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="num" eType="#//Num" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="&#x9;Ile razy powtórzyć rzut (opcjonalne)&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="formexpr" lowerBound="1"
+        eType="#//FormExpr" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Wyrażenie bazowe (kostki)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FormExpr">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="fragment odpowiadajacy za operacje doatkowe na wyniku (mnożenie, dodawanie, odejmowanie, dzielnie)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//Dice"
+        containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Rzut kością"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Num" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="&#x9;Drugi operand (jeśli występuje)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//Operator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Dice" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="worzec odpowaidajćy na rodzaj kości"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sides" lowerBound="1" eType="#//Num"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleDice" eSuperTypes="#//Dice">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="dla pojedyńczyhc kosci"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiDice" eSuperTypes="#//Dice">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="dla kości wielokrotnycch"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="count" lowerBound="1" eType="#//Num"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Num">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="podstaowa klasa numeru"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SumRule" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="klasa abstrkacyjna grupująca sasady"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SuccessRule" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="klasa abstrkacyjna grupująca sasady"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Operator">
+    <eLiterals name="ADD" value="1" literal="ADD"/>
+    <eLiterals name="SUB" value="2" literal="SUB"/>
+    <eLiterals name="MUL" value="3" literal="MUL"/>
+    <eLiterals name="DIV" value="4" literal="DIV"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Sign">
+    <eLiterals name="ADD" value="1" literal="ADD"/>
+    <eLiterals name="SUB" value="2" literal="SUB"/>
+    <eLiterals name="NONE" literal="NONE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HighLow">
+    <eLiterals name="HIGH" value="1" literal="HIGH"/>
+    <eLiterals name="LOW" value="2" literal="LOW"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="FirstLast">
+    <eLiterals name="FIRST" value="1" literal="FIRST"/>
+    <eLiterals name="LAST" value="2" literal="LAST"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExplosionRule" eSuperTypes="#//SumRule">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="element odpowiedzialny za eksplodujace kości "/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="num" lowerBound="1" eType="#//Num"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sign" lowerBound="1" eType="#//Sign"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DiceMarkSum" eSuperTypes="#//SumRule">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="oznaczanie kosci przy sumownaiu"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mark" lowerBound="1" eType="#//Mark"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DiceDiscSum" eSuperTypes="#//SumRule">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="odrzucanie kosci przy sumownaiu"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="discard" lowerBound="1"
+        eType="#//Discard" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DiceRerollSum" eSuperTypes="#//SumRule">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="przerzucanie kosci przy sumownaiu"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reroll" lowerBound="1"
+        eType="#//Reroll" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SuccessBasic" eSuperTypes="#//SuccessRule">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="baza sukcesu dla danej wartości"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="num" lowerBound="1" eType="#//Num"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="negated" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SuccessThreshold" eSuperTypes="#//SuccessRule">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Liczenie sukcesów gdy więcej niż/mniejsze niż"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hightlow" lowerBound="1"
+        eType="#//HighLow"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="num" lowerBound="1" eType="#//Num"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SuccessMultiplier" eSuperTypes="#//SuccessRule">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="sukcesy wielokrotne"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sign" lowerBound="1" eType="#//Sign"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mult" lowerBound="1" eType="#//Num"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="num" lowerBound="1" eType="#//Num"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DiceMarkSuk" eSuperTypes="#//SuccessRule">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="ozanzanie sukcwsów"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mark" lowerBound="1" eType="#//Mark"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DiceDiscSuk" eSuperTypes="#//SuccessRule">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="odrzucanie sukcesów"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="discard" lowerBound="1"
+        eType="#//Discard" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DiceRerollSuk" eSuperTypes="#//SuccessRule">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="przerzucanie sukcesów"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reroll" lowerBound="1"
+        eType="#//Reroll" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Mark" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="klasa abstrakcyjna grupujaca wszystkie elemnty odpowiadajace za ozanczania"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Discard" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="klasa abstrakcyjna grupujaca wszystkie elemnty odpowiadajace za odrzucenia"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Reroll" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="klasa abstrakcyjna grupujaca wszystkie elemnty odpowiadajace za przerzucanie"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MarkThan" eSuperTypes="#//Mark">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1"
+        eType="#//Operator"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="num" lowerBound="1" eType="#//Num"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MarkHigh" eSuperTypes="#//Mark">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hightlow" lowerBound="1"
+        eType="#//HighLow"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MarkKol" eSuperTypes="#//Mark">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="num" lowerBound="1" eType="#//Num"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstlast" lowerBound="1"
+        eType="#//FirstLast"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MarkNum" eSuperTypes="#//Mark">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="num" lowerBound="1" eType="#//Num"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RerollHigh" eSuperTypes="#//Reroll">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hightlow" lowerBound="1"
+        eType="#//HighLow"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RerollThan" eSuperTypes="#//Reroll">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1"
+        eType="#//Operator"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="num" lowerBound="1" eType="#//Num"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RerollKol" eSuperTypes="#//Reroll">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="num" lowerBound="1" eType="#//Num"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstlast" lowerBound="1"
+        eType="#//FirstLast"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RerollNum" eSuperTypes="#//Reroll">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="num" lowerBound="1" eType="#//Num"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DiscardKol" eSuperTypes="#//Discard">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="num" lowerBound="1" eType="#//Num"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstlast" lowerBound="1"
+        eType="#//FirstLast"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DiscardNum" eSuperTypes="#//Discard">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="num" lowerBound="1" eType="#//Num"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DiscardHigh" eSuperTypes="#//Discard">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hightlow" lowerBound="1"
+        eType="#//HighLow"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DiscardThan" eSuperTypes="#//Discard">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1"
+        eType="#//Operator"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="num" lowerBound="1" eType="#//Num"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="MulDiv">
+    <eLiterals name="MUL" value="3" literal="MUL"/>
+    <eLiterals name="DIV" value="4" literal="DIV"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SuccessCompositeRule" eSuperTypes="#//SuccessRule">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="rekurencyjne liczenie seukcesów"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="successrule" lowerBound="1"
+        eType="#//SuccessRule" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

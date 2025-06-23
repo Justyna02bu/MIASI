@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: rzutykoscia2.edit;singleton:=true
+Automatic-Module-Name: rzutykoscia2.edit
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: Rzutykoscia.provider.Rzutykoscia232EditPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Export-Package: Rzutykoscia.provider
+Require-Bundle: org.eclipse.core.runtime,
+ rzutykoscia2;visibility:=reexport,
+ org.eclipse.emf.edit;visibility:=reexport
+Bundle-ActivationPolicy: lazy

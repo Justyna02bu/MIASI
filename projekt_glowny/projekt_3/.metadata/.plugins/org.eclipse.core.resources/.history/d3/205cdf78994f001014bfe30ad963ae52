@@ -1,0 +1,59 @@
+package org.xtext.example.mydsl.ui.handlers;
+
+import java.io.File;
+import java.util.Collections;
+
+import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.handlers.HandlerUtil;
+import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.ui.editor.XtextEditor;
+
+public class ExportModelHandler extends AbstractHandler {
+
+    @Override
+    public Object execute(ExecutionEvent event) throws ExecutionException {
+        IEditorPart editorPart = HandlerUtil.getActiveEditor(event);
+        if (editorPart instanceof XtextEditor xtextEditor) {
+            xtextEditor.getDocument().readOnly((XtextResource resource) -> {
+                try {
+                    URI originalUri = resource.getURI();
+                    if (originalUri == null || originalUri.toFileString() == null) {
+                        MessageDialog.openError(HandlerUtil.getActiveShell(event), "Błąd eksportu", "Nie można uzyskać ścieżki do pliku. Upewnij się, że plik został zapisany na dysku.");
+                        return null;
+                    }
+
+                    // Tworzenie ścieżki .xmi
+                    String originalPath = originalUri.toFileString();
+                    String newPath = originalPath + ".xmi";
+                    URI xmiUri = URI.createFileURI(newPath);
+
+                    // Ustaw nowy URI i zarejestruj fabrykę
+                    resource.setURI(xmiUri);
+                    resource.getResourceSet()
+                            .getResourceFactoryRegistry()
+                            .getExtensionToFactoryMap()
+                            .put("xmi", new XMIResourceFactoryImpl());
+
+                    // Zapis do XMI
+                    resource.save(Collections.emptyMap());
+
+                    MessageDialog.openInformation(HandlerUtil.getActiveShell(event), "Eksport zakończony", "Plik zapisano jako:\n" + newPath);
+                    System.out.println("Eksport zakończony: " + newPath);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    MessageDialog.openError(HandlerUtil.getActiveShell(event), "Błąd eksportu", e.getMessage());
+                }
+                return null;
+            });
+        }
+        return null;
+    }
+}

@@ -1,0 +1,43 @@
+package org.xtext.example.mydsl.ui.handlers;
+
+import java.io.File;
+import java.util.Collections;
+
+import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ui.handlers.HandlerUtil;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.ui.editor.XtextEditor;
+
+public class ExportModelHandler extends AbstractHandler {
+
+    @Override
+    public Object execute(ExecutionEvent event) throws ExecutionException {
+        IEditorPart editorPart = HandlerUtil.getActiveEditor(event);
+        if (editorPart instanceof XtextEditor xtextEditor) {
+            xtextEditor.getDocument().readOnly((XtextResource resource) -> {
+                try {
+                    resource.setURI(URI.createFileURI(
+                        resource.getURI().toFileString().replace(".mydsl", ".xmi")));
+                    resource.getResourceSet()
+                            .getResourceFactoryRegistry()
+                            .getExtensionToFactoryMap()
+                            .put("xmi", new XMIResourceFactoryImpl());
+                    resource.save(Collections.emptyMap());
+                    System.out.println("Eksport do XMI zakończony.");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            });
+        }
+        return null;
+    }
+}

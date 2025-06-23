@@ -1,0 +1,41 @@
+lexer grammar ExprLexer;
+
+DICE : 'd' ;
+COMMA : ',' ;
+COLON : ':' ;
+SEMI : ';' ;
+ADD : '+' ;
+SUB : '-' ;
+MUL : '*' ;
+DEV : '/' ;
+DOT : '.' ;
+
+LPAREN : '(' ;
+RPAREN : ')' ;
+
+SUMUJ : 'Sumuj' ;
+SUKCESY : 'Sukcesy' ;
+
+SUMU : 'sumuj' ;
+SUKC : 'sukcesy' ;
+
+MULT : 'razy' ;
+BOOM : 'wybuchowe' ;
+SUM : 'dodawaj';
+OD : 'odejmuj' ;
+SUC : 'sukces' ;
+MORETHAN : 'wiecej niz' ;
+LESSTHAN : 'mniej niz' ;
+HIGH : 'najwyzsze' ;
+LOW : 'najnizsze' ;
+TOSS : 'rzut' ;
+LAST: 'ostatnie' ;
+FIRST: 'pierwsze' ;
+MARK : 'oznacz' ;
+DISC : 'odrzuc' ;
+REROLL : 'przerzuc';
+
+INT : [0-9]+ ;
+WS: [ \t\n\r\f]+ -> skip ;
+
+COKOLWIEK: [*];

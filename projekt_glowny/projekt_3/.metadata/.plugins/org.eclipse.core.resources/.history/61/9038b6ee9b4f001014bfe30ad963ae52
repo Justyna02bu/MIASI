@@ -1,0 +1,64 @@
+parser grammar ExprParser;
+options { tokenVocab=ExprLexer; }
+
+program: stat EOF ;
+
+stat: SUMUJ diceExprSum (SEMI diceExprSum)* (DOT|COMMA)? EOF
+    | SUKCESY diceExprSuk (SEMI diceExprSuk)* (DOT|COMMA)? EOF
+    ;
+
+diceExprSum: (ADD|SUB)? mul COLON rulesums (COMMA rulesums)*
+           | (ADD|SUB)? mul
+           ;
+
+diceExprSuk: (ADD|SUB)? mul COLON rulesukces (COMMA rulesukces)*
+           | (ADD|SUB)? mul
+           ;
+
+mul: form
+   | form MULT num
+   | LPAREN form RPAREN MULT num
+   | LPAREN form RPAREN
+   ;
+
+form: dice
+    | dice (ADD|SUB|MUL|DEV) num
+    ;
+
+dice: DICE num                                 #SingleDice
+    | num DICE num                             #MultiDice
+    ;
+
+rulesukces: SUC (rulesukces|SUB? num)          #SuccessRule
+    | SUC (MORETHAN|LESSTHAN) num              #SuccessThreshold
+    | SUC num MULT SUB? num                    #SuccessMultiplier
+    | MARK mark                                #DiceMarkSuk
+    | DISC discard                             #DiceDiscSuk
+    | REROLL reroll                            #DiceRerollSuk
+    ;
+
+rulesums: (SUM|OD) BOOM num                    #ExplosionRule
+    | MARK mark                                #DiceMarkSum
+    | DISC discard                             #DiceDiscSum
+    | REROLL reroll                            #DiceRerollSum
+    ;
+
+mark: (MORETHAN|LESSTHAN) num                  #MarkThan
+    | (HIGH|LOW)                               #MarkHigh
+    | num (FIRST|LAST)                         #MarkKol
+    | num                                      #MarkNum
+    ;
+
+discard: (MORETHAN|LESSTHAN) num               #DiscardThan
+       | (HIGH|LOW)                            #DiscardHigh
+       | num (FIRST|LAST)                      #DiscardKol
+       | num                                   #DiscardNum
+       ;
+
+reroll: (MORETHAN|LESSTHAN) num               #RerollThen
+      | (HIGH|LOW)                            #RerollHight
+      | num (FIRST|LAST)                      #RerollKol
+      | num                                   #RerollNum
+      ;
+
+num : INT #Number;

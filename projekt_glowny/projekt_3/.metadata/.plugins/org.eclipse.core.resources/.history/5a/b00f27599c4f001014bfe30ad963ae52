@@ -1,0 +1,2023 @@
+package org.xtext.example.mydsl.ui.antler.src;
+
+import org.antlr.v4.runtime.atn.*;
+import org.antlr.v4.runtime.dfa.DFA;
+import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.misc.*;
+import org.antlr.v4.runtime.tree.*;
+import java.util.List;
+import java.util.Iterator;
+import java.util.ArrayList;
+
+@SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue", "this-escape"})
+public class ExprParser extends Parser {
+	static { RuntimeMetaData.checkVersion("4.13.2", RuntimeMetaData.VERSION); }
+
+	protected static final DFA[] _decisionToDFA;
+	protected static final PredictionContextCache _sharedContextCache =
+		new PredictionContextCache();
+	public static final int
+		DICE=1, COMMA=2, COLON=3, SEMI=4, ADD=5, SUB=6, MUL=7, DEV=8, DOT=9, LPAREN=10, 
+		RPAREN=11, SUMUJ=12, SUKCESY=13, SUMU=14, SUKC=15, MULT=16, BOOM=17, SUM=18, 
+		OD=19, SUC=20, MORETHAN=21, LESSTHAN=22, HIGH=23, LOW=24, TOSS=25, LAST=26, 
+		FIRST=27, MARK=28, DISC=29, REROLL=30, INT=31, WS=32, COKOLWIEK=33;
+	public static final int
+		RULE_program = 0, RULE_stat = 1, RULE_diceExprSum = 2, RULE_diceExprSuk = 3, 
+		RULE_mul = 4, RULE_form = 5, RULE_dice = 6, RULE_rulesukces = 7, RULE_rulesums = 8, 
+		RULE_mark = 9, RULE_discard = 10, RULE_reroll = 11, RULE_num = 12;
+	private static String[] makeRuleNames() {
+		return new String[] {
+			"program", "stat", "diceExprSum", "diceExprSuk", "mul", "form", "dice", 
+			"rulesukces", "rulesums", "mark", "discard", "reroll", "num"
+		};
+	}
+	public static final String[] ruleNames = makeRuleNames();
+
+	private static String[] makeLiteralNames() {
+		return new String[] {
+			null, "'d'", "','", "':'", "';'", "'+'", "'-'", "'*'", "'/'", "'.'", 
+			"'('", "')'", "'Sumuj'", "'Sukcesy'", "'sumuj'", "'sukcesy'", "'razy'", 
+			"'wybuchowe'", "'dodawaj'", "'odejmuj'", "'sukces'", "'wiecej niz'", 
+			"'mniej niz'", "'najwyzsze'", "'najnizsze'", "'rzut'", "'ostatnie'", 
+			"'pierwsze'", "'oznacz'", "'odrzuc'", "'przerzuc'"
+		};
+	}
+	private static final String[] _LITERAL_NAMES = makeLiteralNames();
+	private static String[] makeSymbolicNames() {
+		return new String[] {
+			null, "DICE", "COMMA", "COLON", "SEMI", "ADD", "SUB", "MUL", "DEV", "DOT", 
+			"LPAREN", "RPAREN", "SUMUJ", "SUKCESY", "SUMU", "SUKC", "MULT", "BOOM", 
+			"SUM", "OD", "SUC", "MORETHAN", "LESSTHAN", "HIGH", "LOW", "TOSS", "LAST", 
+			"FIRST", "MARK", "DISC", "REROLL", "INT", "WS", "COKOLWIEK"
+		};
+	}
+	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
+	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
+
+	/**
+	 * @deprecated Use {@link #VOCABULARY} instead.
+	 */
+	@Deprecated
+	public static final String[] tokenNames;
+	static {
+		tokenNames = new String[_SYMBOLIC_NAMES.length];
+		for (int i = 0; i < tokenNames.length; i++) {
+			tokenNames[i] = VOCABULARY.getLiteralName(i);
+			if (tokenNames[i] == null) {
+				tokenNames[i] = VOCABULARY.getSymbolicName(i);
+			}
+
+			if (tokenNames[i] == null) {
+				tokenNames[i] = "<INVALID>";
+			}
+		}
+	}
+
+	@Override
+	@Deprecated
+	public String[] getTokenNames() {
+		return tokenNames;
+	}
+
+	@Override
+
+	public Vocabulary getVocabulary() {
+		return VOCABULARY;
+	}
+
+	@Override
+	public String getGrammarFileName() { return "ExprParser.g4"; }
+
+	@Override
+	public String[] getRuleNames() { return ruleNames; }
+
+	@Override
+	public String getSerializedATN() { return _serializedATN; }
+
+	@Override
+	public ATN getATN() { return _ATN; }
+
+	public ExprParser(TokenStream input) {
+		super(input);
+		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class ProgramContext extends ParserRuleContext {
+		public StatContext stat() {
+			return getRuleContext(StatContext.class,0);
+		}
+		public TerminalNode EOF() { return getToken(ExprParser.EOF, 0); }
+		public ProgramContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_program; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterProgram(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitProgram(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitProgram(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final ProgramContext program() throws RecognitionException {
+		ProgramContext _localctx = new ProgramContext(_ctx, getState());
+		enterRule(_localctx, 0, RULE_program);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(26);
+			stat();
+			setState(27);
+			match(EOF);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class StatContext extends ParserRuleContext {
+		public TerminalNode SUMUJ() { return getToken(ExprParser.SUMUJ, 0); }
+		public List<DiceExprSumContext> diceExprSum() {
+			return getRuleContexts(DiceExprSumContext.class);
+		}
+		public DiceExprSumContext diceExprSum(int i) {
+			return getRuleContext(DiceExprSumContext.class,i);
+		}
+		public TerminalNode EOF() { return getToken(ExprParser.EOF, 0); }
+		public List<TerminalNode> SEMI() { return getTokens(ExprParser.SEMI); }
+		public TerminalNode SEMI(int i) {
+			return getToken(ExprParser.SEMI, i);
+		}
+		public TerminalNode DOT() { return getToken(ExprParser.DOT, 0); }
+		public TerminalNode COMMA() { return getToken(ExprParser.COMMA, 0); }
+		public TerminalNode SUKCESY() { return getToken(ExprParser.SUKCESY, 0); }
+		public List<DiceExprSukContext> diceExprSuk() {
+			return getRuleContexts(DiceExprSukContext.class);
+		}
+		public DiceExprSukContext diceExprSuk(int i) {
+			return getRuleContext(DiceExprSukContext.class,i);
+		}
+		public StatContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_stat; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterStat(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitStat(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitStat(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final StatContext stat() throws RecognitionException {
+		StatContext _localctx = new StatContext(_ctx, getState());
+		enterRule(_localctx, 2, RULE_stat);
+		int _la;
+		try {
+			setState(57);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case SUMUJ:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(29);
+				match(SUMUJ);
+				setState(30);
+				diceExprSum();
+				setState(35);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				while (_la==SEMI) {
+					{
+					{
+					setState(31);
+					match(SEMI);
+					setState(32);
+					diceExprSum();
+					}
+					}
+					setState(37);
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				}
+				setState(39);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==COMMA || _la==DOT) {
+					{
+					setState(38);
+					_la = _input.LA(1);
+					if ( !(_la==COMMA || _la==DOT) ) {
+					_errHandler.recoverInline(this);
+					}
+					else {
+						if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+						_errHandler.reportMatch(this);
+						consume();
+					}
+					}
+				}
+
+				setState(41);
+				match(EOF);
+				}
+				break;
+			case SUKCESY:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(43);
+				match(SUKCESY);
+				setState(44);
+				diceExprSuk();
+				setState(49);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				while (_la==SEMI) {
+					{
+					{
+					setState(45);
+					match(SEMI);
+					setState(46);
+					diceExprSuk();
+					}
+					}
+					setState(51);
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				}
+				setState(53);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==COMMA || _la==DOT) {
+					{
+					setState(52);
+					_la = _input.LA(1);
+					if ( !(_la==COMMA || _la==DOT) ) {
+					_errHandler.recoverInline(this);
+					}
+					else {
+						if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+						_errHandler.reportMatch(this);
+						consume();
+					}
+					}
+				}
+
+				setState(55);
+				match(EOF);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class DiceExprSumContext extends ParserRuleContext {
+		public MulContext mul() {
+			return getRuleContext(MulContext.class,0);
+		}
+		public TerminalNode COLON() { return getToken(ExprParser.COLON, 0); }
+		public List<RulesumsContext> rulesums() {
+			return getRuleContexts(RulesumsContext.class);
+		}
+		public RulesumsContext rulesums(int i) {
+			return getRuleContext(RulesumsContext.class,i);
+		}
+		public List<TerminalNode> COMMA() { return getTokens(ExprParser.COMMA); }
+		public TerminalNode COMMA(int i) {
+			return getToken(ExprParser.COMMA, i);
+		}
+		public TerminalNode ADD() { return getToken(ExprParser.ADD, 0); }
+		public TerminalNode SUB() { return getToken(ExprParser.SUB, 0); }
+		public DiceExprSumContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_diceExprSum; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterDiceExprSum(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitDiceExprSum(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitDiceExprSum(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final DiceExprSumContext diceExprSum() throws RecognitionException {
+		DiceExprSumContext _localctx = new DiceExprSumContext(_ctx, getState());
+		enterRule(_localctx, 4, RULE_diceExprSum);
+		int _la;
+		try {
+			int _alt;
+			setState(76);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(60);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==ADD || _la==SUB) {
+					{
+					setState(59);
+					_la = _input.LA(1);
+					if ( !(_la==ADD || _la==SUB) ) {
+					_errHandler.recoverInline(this);
+					}
+					else {
+						if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+						_errHandler.reportMatch(this);
+						consume();
+					}
+					}
+				}
+
+				setState(62);
+				mul();
+				setState(63);
+				match(COLON);
+				setState(64);
+				rulesums();
+				setState(69);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
+				while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+					if ( _alt==1 ) {
+						{
+						{
+						setState(65);
+						match(COMMA);
+						setState(66);
+						rulesums();
+						}
+						} 
+					}
+					setState(71);
+					_errHandler.sync(this);
+					_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
+				}
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(73);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==ADD || _la==SUB) {
+					{
+					setState(72);
+					_la = _input.LA(1);
+					if ( !(_la==ADD || _la==SUB) ) {
+					_errHandler.recoverInline(this);
+					}
+					else {
+						if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+						_errHandler.reportMatch(this);
+						consume();
+					}
+					}
+				}
+
+				setState(75);
+				mul();
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class DiceExprSukContext extends ParserRuleContext {
+		public MulContext mul() {
+			return getRuleContext(MulContext.class,0);
+		}
+		public TerminalNode COLON() { return getToken(ExprParser.COLON, 0); }
+		public List<RulesukcesContext> rulesukces() {
+			return getRuleContexts(RulesukcesContext.class);
+		}
+		public RulesukcesContext rulesukces(int i) {
+			return getRuleContext(RulesukcesContext.class,i);
+		}
+		public List<TerminalNode> COMMA() { return getTokens(ExprParser.COMMA); }
+		public TerminalNode COMMA(int i) {
+			return getToken(ExprParser.COMMA, i);
+		}
+		public TerminalNode ADD() { return getToken(ExprParser.ADD, 0); }
+		public TerminalNode SUB() { return getToken(ExprParser.SUB, 0); }
+		public DiceExprSukContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_diceExprSuk; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterDiceExprSuk(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitDiceExprSuk(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitDiceExprSuk(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final DiceExprSukContext diceExprSuk() throws RecognitionException {
+		DiceExprSukContext _localctx = new DiceExprSukContext(_ctx, getState());
+		enterRule(_localctx, 6, RULE_diceExprSuk);
+		int _la;
+		try {
+			int _alt;
+			setState(95);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,12,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(79);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==ADD || _la==SUB) {
+					{
+					setState(78);
+					_la = _input.LA(1);
+					if ( !(_la==ADD || _la==SUB) ) {
+					_errHandler.recoverInline(this);
+					}
+					else {
+						if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+						_errHandler.reportMatch(this);
+						consume();
+					}
+					}
+				}
+
+				setState(81);
+				mul();
+				setState(82);
+				match(COLON);
+				setState(83);
+				rulesukces();
+				setState(88);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,10,_ctx);
+				while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+					if ( _alt==1 ) {
+						{
+						{
+						setState(84);
+						match(COMMA);
+						setState(85);
+						rulesukces();
+						}
+						} 
+					}
+					setState(90);
+					_errHandler.sync(this);
+					_alt = getInterpreter().adaptivePredict(_input,10,_ctx);
+				}
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(92);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==ADD || _la==SUB) {
+					{
+					setState(91);
+					_la = _input.LA(1);
+					if ( !(_la==ADD || _la==SUB) ) {
+					_errHandler.recoverInline(this);
+					}
+					else {
+						if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+						_errHandler.reportMatch(this);
+						consume();
+					}
+					}
+				}
+
+				setState(94);
+				mul();
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class MulContext extends ParserRuleContext {
+		public FormContext form() {
+			return getRuleContext(FormContext.class,0);
+		}
+		public TerminalNode MULT() { return getToken(ExprParser.MULT, 0); }
+		public NumContext num() {
+			return getRuleContext(NumContext.class,0);
+		}
+		public TerminalNode LPAREN() { return getToken(ExprParser.LPAREN, 0); }
+		public TerminalNode RPAREN() { return getToken(ExprParser.RPAREN, 0); }
+		public MulContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_mul; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterMul(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitMul(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitMul(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final MulContext mul() throws RecognitionException {
+		MulContext _localctx = new MulContext(_ctx, getState());
+		enterRule(_localctx, 8, RULE_mul);
+		try {
+			setState(112);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(97);
+				form();
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(98);
+				form();
+				setState(99);
+				match(MULT);
+				setState(100);
+				num();
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(102);
+				match(LPAREN);
+				setState(103);
+				form();
+				setState(104);
+				match(RPAREN);
+				setState(105);
+				match(MULT);
+				setState(106);
+				num();
+				}
+				break;
+			case 4:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(108);
+				match(LPAREN);
+				setState(109);
+				form();
+				setState(110);
+				match(RPAREN);
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class FormContext extends ParserRuleContext {
+		public DiceContext dice() {
+			return getRuleContext(DiceContext.class,0);
+		}
+		public NumContext num() {
+			return getRuleContext(NumContext.class,0);
+		}
+		public TerminalNode ADD() { return getToken(ExprParser.ADD, 0); }
+		public TerminalNode SUB() { return getToken(ExprParser.SUB, 0); }
+		public TerminalNode MUL() { return getToken(ExprParser.MUL, 0); }
+		public TerminalNode DEV() { return getToken(ExprParser.DEV, 0); }
+		public FormContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_form; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterForm(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitForm(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitForm(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final FormContext form() throws RecognitionException {
+		FormContext _localctx = new FormContext(_ctx, getState());
+		enterRule(_localctx, 10, RULE_form);
+		int _la;
+		try {
+			setState(119);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,14,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(114);
+				dice();
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(115);
+				dice();
+				setState(116);
+				_la = _input.LA(1);
+				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 480L) != 0)) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				setState(117);
+				num();
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class DiceContext extends ParserRuleContext {
+		public DiceContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_dice; }
+	 
+		public DiceContext() { }
+		public void copyFrom(DiceContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class SingleDiceContext extends DiceContext {
+		public TerminalNode DICE() { return getToken(ExprParser.DICE, 0); }
+		public NumContext num() {
+			return getRuleContext(NumContext.class,0);
+		}
+		public SingleDiceContext(DiceContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterSingleDice(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitSingleDice(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitSingleDice(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class MultiDiceContext extends DiceContext {
+		public List<NumContext> num() {
+			return getRuleContexts(NumContext.class);
+		}
+		public NumContext num(int i) {
+			return getRuleContext(NumContext.class,i);
+		}
+		public TerminalNode DICE() { return getToken(ExprParser.DICE, 0); }
+		public MultiDiceContext(DiceContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterMultiDice(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitMultiDice(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitMultiDice(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final DiceContext dice() throws RecognitionException {
+		DiceContext _localctx = new DiceContext(_ctx, getState());
+		enterRule(_localctx, 12, RULE_dice);
+		try {
+			setState(127);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case DICE:
+				_localctx = new SingleDiceContext(_localctx);
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(121);
+				match(DICE);
+				setState(122);
+				num();
+				}
+				break;
+			case INT:
+				_localctx = new MultiDiceContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(123);
+				num();
+				setState(124);
+				match(DICE);
+				setState(125);
+				num();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class RulesukcesContext extends ParserRuleContext {
+		public RulesukcesContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_rulesukces; }
+	 
+		public RulesukcesContext() { }
+		public void copyFrom(RulesukcesContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class SuccessMultiplierContext extends RulesukcesContext {
+		public TerminalNode SUC() { return getToken(ExprParser.SUC, 0); }
+		public List<NumContext> num() {
+			return getRuleContexts(NumContext.class);
+		}
+		public NumContext num(int i) {
+			return getRuleContext(NumContext.class,i);
+		}
+		public TerminalNode MULT() { return getToken(ExprParser.MULT, 0); }
+		public TerminalNode SUB() { return getToken(ExprParser.SUB, 0); }
+		public SuccessMultiplierContext(RulesukcesContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterSuccessMultiplier(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitSuccessMultiplier(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitSuccessMultiplier(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class DiceDiscSukContext extends RulesukcesContext {
+		public TerminalNode DISC() { return getToken(ExprParser.DISC, 0); }
+		public DiscardContext discard() {
+			return getRuleContext(DiscardContext.class,0);
+		}
+		public DiceDiscSukContext(RulesukcesContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterDiceDiscSuk(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitDiceDiscSuk(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitDiceDiscSuk(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class DiceRerollSukContext extends RulesukcesContext {
+		public TerminalNode REROLL() { return getToken(ExprParser.REROLL, 0); }
+		public RerollContext reroll() {
+			return getRuleContext(RerollContext.class,0);
+		}
+		public DiceRerollSukContext(RulesukcesContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterDiceRerollSuk(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitDiceRerollSuk(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitDiceRerollSuk(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class SuccessRuleContext extends RulesukcesContext {
+		public TerminalNode SUC() { return getToken(ExprParser.SUC, 0); }
+		public RulesukcesContext rulesukces() {
+			return getRuleContext(RulesukcesContext.class,0);
+		}
+		public NumContext num() {
+			return getRuleContext(NumContext.class,0);
+		}
+		public TerminalNode SUB() { return getToken(ExprParser.SUB, 0); }
+		public SuccessRuleContext(RulesukcesContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterSuccessRule(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitSuccessRule(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitSuccessRule(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class SuccessThresholdContext extends RulesukcesContext {
+		public TerminalNode SUC() { return getToken(ExprParser.SUC, 0); }
+		public NumContext num() {
+			return getRuleContext(NumContext.class,0);
+		}
+		public TerminalNode MORETHAN() { return getToken(ExprParser.MORETHAN, 0); }
+		public TerminalNode LESSTHAN() { return getToken(ExprParser.LESSTHAN, 0); }
+		public SuccessThresholdContext(RulesukcesContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterSuccessThreshold(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitSuccessThreshold(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitSuccessThreshold(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class DiceMarkSukContext extends RulesukcesContext {
+		public TerminalNode MARK() { return getToken(ExprParser.MARK, 0); }
+		public MarkContext mark() {
+			return getRuleContext(MarkContext.class,0);
+		}
+		public DiceMarkSukContext(RulesukcesContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterDiceMarkSuk(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitDiceMarkSuk(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitDiceMarkSuk(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final RulesukcesContext rulesukces() throws RecognitionException {
+		RulesukcesContext _localctx = new RulesukcesContext(_ctx, getState());
+		enterRule(_localctx, 14, RULE_rulesukces);
+		int _la;
+		try {
+			setState(154);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,19,_ctx) ) {
+			case 1:
+				_localctx = new SuccessRuleContext(_localctx);
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(129);
+				match(SUC);
+				setState(135);
+				_errHandler.sync(this);
+				switch (_input.LA(1)) {
+				case SUC:
+				case MARK:
+				case DISC:
+				case REROLL:
+					{
+					setState(130);
+					rulesukces();
+					}
+					break;
+				case SUB:
+				case INT:
+					{
+					setState(132);
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+					if (_la==SUB) {
+						{
+						setState(131);
+						match(SUB);
+						}
+					}
+
+					setState(134);
+					num();
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
+				}
+				}
+				break;
+			case 2:
+				_localctx = new SuccessThresholdContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(137);
+				match(SUC);
+				setState(138);
+				_la = _input.LA(1);
+				if ( !(_la==MORETHAN || _la==LESSTHAN) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				setState(139);
+				num();
+				}
+				break;
+			case 3:
+				_localctx = new SuccessMultiplierContext(_localctx);
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(140);
+				match(SUC);
+				setState(141);
+				num();
+				setState(142);
+				match(MULT);
+				setState(144);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==SUB) {
+					{
+					setState(143);
+					match(SUB);
+					}
+				}
+
+				setState(146);
+				num();
+				}
+				break;
+			case 4:
+				_localctx = new DiceMarkSukContext(_localctx);
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(148);
+				match(MARK);
+				setState(149);
+				mark();
+				}
+				break;
+			case 5:
+				_localctx = new DiceDiscSukContext(_localctx);
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(150);
+				match(DISC);
+				setState(151);
+				discard();
+				}
+				break;
+			case 6:
+				_localctx = new DiceRerollSukContext(_localctx);
+				enterOuterAlt(_localctx, 6);
+				{
+				setState(152);
+				match(REROLL);
+				setState(153);
+				reroll();
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class RulesumsContext extends ParserRuleContext {
+		public RulesumsContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_rulesums; }
+	 
+		public RulesumsContext() { }
+		public void copyFrom(RulesumsContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class ExplosionRuleContext extends RulesumsContext {
+		public TerminalNode BOOM() { return getToken(ExprParser.BOOM, 0); }
+		public NumContext num() {
+			return getRuleContext(NumContext.class,0);
+		}
+		public TerminalNode SUM() { return getToken(ExprParser.SUM, 0); }
+		public TerminalNode OD() { return getToken(ExprParser.OD, 0); }
+		public ExplosionRuleContext(RulesumsContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterExplosionRule(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitExplosionRule(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitExplosionRule(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class DiceRerollSumContext extends RulesumsContext {
+		public TerminalNode REROLL() { return getToken(ExprParser.REROLL, 0); }
+		public RerollContext reroll() {
+			return getRuleContext(RerollContext.class,0);
+		}
+		public DiceRerollSumContext(RulesumsContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterDiceRerollSum(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitDiceRerollSum(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitDiceRerollSum(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class DiceDiscSumContext extends RulesumsContext {
+		public TerminalNode DISC() { return getToken(ExprParser.DISC, 0); }
+		public DiscardContext discard() {
+			return getRuleContext(DiscardContext.class,0);
+		}
+		public DiceDiscSumContext(RulesumsContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterDiceDiscSum(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitDiceDiscSum(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitDiceDiscSum(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class DiceMarkSumContext extends RulesumsContext {
+		public TerminalNode MARK() { return getToken(ExprParser.MARK, 0); }
+		public MarkContext mark() {
+			return getRuleContext(MarkContext.class,0);
+		}
+		public DiceMarkSumContext(RulesumsContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterDiceMarkSum(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitDiceMarkSum(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitDiceMarkSum(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final RulesumsContext rulesums() throws RecognitionException {
+		RulesumsContext _localctx = new RulesumsContext(_ctx, getState());
+		enterRule(_localctx, 16, RULE_rulesums);
+		int _la;
+		try {
+			setState(165);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case SUM:
+			case OD:
+				_localctx = new ExplosionRuleContext(_localctx);
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(156);
+				_la = _input.LA(1);
+				if ( !(_la==SUM || _la==OD) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				setState(157);
+				match(BOOM);
+				setState(158);
+				num();
+				}
+				break;
+			case MARK:
+				_localctx = new DiceMarkSumContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(159);
+				match(MARK);
+				setState(160);
+				mark();
+				}
+				break;
+			case DISC:
+				_localctx = new DiceDiscSumContext(_localctx);
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(161);
+				match(DISC);
+				setState(162);
+				discard();
+				}
+				break;
+			case REROLL:
+				_localctx = new DiceRerollSumContext(_localctx);
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(163);
+				match(REROLL);
+				setState(164);
+				reroll();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class MarkContext extends ParserRuleContext {
+		public MarkContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_mark; }
+	 
+		public MarkContext() { }
+		public void copyFrom(MarkContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class MarkThanContext extends MarkContext {
+		public NumContext num() {
+			return getRuleContext(NumContext.class,0);
+		}
+		public TerminalNode MORETHAN() { return getToken(ExprParser.MORETHAN, 0); }
+		public TerminalNode LESSTHAN() { return getToken(ExprParser.LESSTHAN, 0); }
+		public MarkThanContext(MarkContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterMarkThan(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitMarkThan(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitMarkThan(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class MarkKolContext extends MarkContext {
+		public NumContext num() {
+			return getRuleContext(NumContext.class,0);
+		}
+		public TerminalNode FIRST() { return getToken(ExprParser.FIRST, 0); }
+		public TerminalNode LAST() { return getToken(ExprParser.LAST, 0); }
+		public MarkKolContext(MarkContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterMarkKol(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitMarkKol(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitMarkKol(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class MarkNumContext extends MarkContext {
+		public NumContext num() {
+			return getRuleContext(NumContext.class,0);
+		}
+		public MarkNumContext(MarkContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterMarkNum(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitMarkNum(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitMarkNum(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class MarkHighContext extends MarkContext {
+		public TerminalNode HIGH() { return getToken(ExprParser.HIGH, 0); }
+		public TerminalNode LOW() { return getToken(ExprParser.LOW, 0); }
+		public MarkHighContext(MarkContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterMarkHigh(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitMarkHigh(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitMarkHigh(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final MarkContext mark() throws RecognitionException {
+		MarkContext _localctx = new MarkContext(_ctx, getState());
+		enterRule(_localctx, 18, RULE_mark);
+		int _la;
+		try {
+			setState(174);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,21,_ctx) ) {
+			case 1:
+				_localctx = new MarkThanContext(_localctx);
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(167);
+				_la = _input.LA(1);
+				if ( !(_la==MORETHAN || _la==LESSTHAN) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				setState(168);
+				num();
+				}
+				break;
+			case 2:
+				_localctx = new MarkHighContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(169);
+				_la = _input.LA(1);
+				if ( !(_la==HIGH || _la==LOW) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				}
+				break;
+			case 3:
+				_localctx = new MarkKolContext(_localctx);
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(170);
+				num();
+				setState(171);
+				_la = _input.LA(1);
+				if ( !(_la==LAST || _la==FIRST) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				}
+				break;
+			case 4:
+				_localctx = new MarkNumContext(_localctx);
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(173);
+				num();
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class DiscardContext extends ParserRuleContext {
+		public DiscardContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_discard; }
+	 
+		public DiscardContext() { }
+		public void copyFrom(DiscardContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class DiscardThanContext extends DiscardContext {
+		public NumContext num() {
+			return getRuleContext(NumContext.class,0);
+		}
+		public TerminalNode MORETHAN() { return getToken(ExprParser.MORETHAN, 0); }
+		public TerminalNode LESSTHAN() { return getToken(ExprParser.LESSTHAN, 0); }
+		public DiscardThanContext(DiscardContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterDiscardThan(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitDiscardThan(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitDiscardThan(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class DiscardKolContext extends DiscardContext {
+		public NumContext num() {
+			return getRuleContext(NumContext.class,0);
+		}
+		public TerminalNode FIRST() { return getToken(ExprParser.FIRST, 0); }
+		public TerminalNode LAST() { return getToken(ExprParser.LAST, 0); }
+		public DiscardKolContext(DiscardContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterDiscardKol(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitDiscardKol(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitDiscardKol(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class DiscardNumContext extends DiscardContext {
+		public NumContext num() {
+			return getRuleContext(NumContext.class,0);
+		}
+		public DiscardNumContext(DiscardContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterDiscardNum(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitDiscardNum(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitDiscardNum(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class DiscardHighContext extends DiscardContext {
+		public TerminalNode HIGH() { return getToken(ExprParser.HIGH, 0); }
+		public TerminalNode LOW() { return getToken(ExprParser.LOW, 0); }
+		public DiscardHighContext(DiscardContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterDiscardHigh(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitDiscardHigh(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitDiscardHigh(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final DiscardContext discard() throws RecognitionException {
+		DiscardContext _localctx = new DiscardContext(_ctx, getState());
+		enterRule(_localctx, 20, RULE_discard);
+		int _la;
+		try {
+			setState(183);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,22,_ctx) ) {
+			case 1:
+				_localctx = new DiscardThanContext(_localctx);
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(176);
+				_la = _input.LA(1);
+				if ( !(_la==MORETHAN || _la==LESSTHAN) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				setState(177);
+				num();
+				}
+				break;
+			case 2:
+				_localctx = new DiscardHighContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(178);
+				_la = _input.LA(1);
+				if ( !(_la==HIGH || _la==LOW) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				}
+				break;
+			case 3:
+				_localctx = new DiscardKolContext(_localctx);
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(179);
+				num();
+				setState(180);
+				_la = _input.LA(1);
+				if ( !(_la==LAST || _la==FIRST) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				}
+				break;
+			case 4:
+				_localctx = new DiscardNumContext(_localctx);
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(182);
+				num();
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class RerollContext extends ParserRuleContext {
+		public RerollContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_reroll; }
+	 
+		public RerollContext() { }
+		public void copyFrom(RerollContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class RerollNumContext extends RerollContext {
+		public NumContext num() {
+			return getRuleContext(NumContext.class,0);
+		}
+		public RerollNumContext(RerollContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterRerollNum(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitRerollNum(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitRerollNum(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class RerollThenContext extends RerollContext {
+		public NumContext num() {
+			return getRuleContext(NumContext.class,0);
+		}
+		public TerminalNode MORETHAN() { return getToken(ExprParser.MORETHAN, 0); }
+		public TerminalNode LESSTHAN() { return getToken(ExprParser.LESSTHAN, 0); }
+		public RerollThenContext(RerollContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterRerollThen(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitRerollThen(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitRerollThen(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class RerollHightContext extends RerollContext {
+		public TerminalNode HIGH() { return getToken(ExprParser.HIGH, 0); }
+		public TerminalNode LOW() { return getToken(ExprParser.LOW, 0); }
+		public RerollHightContext(RerollContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterRerollHight(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitRerollHight(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitRerollHight(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class RerollKolContext extends RerollContext {
+		public NumContext num() {
+			return getRuleContext(NumContext.class,0);
+		}
+		public TerminalNode FIRST() { return getToken(ExprParser.FIRST, 0); }
+		public TerminalNode LAST() { return getToken(ExprParser.LAST, 0); }
+		public RerollKolContext(RerollContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterRerollKol(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitRerollKol(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitRerollKol(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final RerollContext reroll() throws RecognitionException {
+		RerollContext _localctx = new RerollContext(_ctx, getState());
+		enterRule(_localctx, 22, RULE_reroll);
+		int _la;
+		try {
+			setState(192);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,23,_ctx) ) {
+			case 1:
+				_localctx = new RerollThenContext(_localctx);
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(185);
+				_la = _input.LA(1);
+				if ( !(_la==MORETHAN || _la==LESSTHAN) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				setState(186);
+				num();
+				}
+				break;
+			case 2:
+				_localctx = new RerollHightContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(187);
+				_la = _input.LA(1);
+				if ( !(_la==HIGH || _la==LOW) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				}
+				break;
+			case 3:
+				_localctx = new RerollKolContext(_localctx);
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(188);
+				num();
+				setState(189);
+				_la = _input.LA(1);
+				if ( !(_la==LAST || _la==FIRST) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				}
+				break;
+			case 4:
+				_localctx = new RerollNumContext(_localctx);
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(191);
+				num();
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class NumContext extends ParserRuleContext {
+		public NumContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_num; }
+	 
+		public NumContext() { }
+		public void copyFrom(NumContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class NumberContext extends NumContext {
+		public TerminalNode INT() { return getToken(ExprParser.INT, 0); }
+		public NumberContext(NumContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).enterNumber(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExprParserListener ) ((ExprParserListener)listener).exitNumber(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExprParserVisitor ) return ((ExprParserVisitor<? extends T>)visitor).visitNumber(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final NumContext num() throws RecognitionException {
+		NumContext _localctx = new NumContext(_ctx, getState());
+		enterRule(_localctx, 24, RULE_num);
+		try {
+			_localctx = new NumberContext(_localctx);
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(194);
+			match(INT);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static final String _serializedATN =
+		"\u0004\u0001!\u00c5\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
+		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
+		"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b\u0002"+
+		"\f\u0007\f\u0001\u0000\u0001\u0000\u0001\u0000\u0001\u0001\u0001\u0001"+
+		"\u0001\u0001\u0001\u0001\u0005\u0001\"\b\u0001\n\u0001\f\u0001%\t\u0001"+
+		"\u0001\u0001\u0003\u0001(\b\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
+		"\u0001\u0001\u0001\u0001\u0001\u0001\u0005\u00010\b\u0001\n\u0001\f\u0001"+
+		"3\t\u0001\u0001\u0001\u0003\u00016\b\u0001\u0001\u0001\u0001\u0001\u0003"+
+		"\u0001:\b\u0001\u0001\u0002\u0003\u0002=\b\u0002\u0001\u0002\u0001\u0002"+
+		"\u0001\u0002\u0001\u0002\u0001\u0002\u0005\u0002D\b\u0002\n\u0002\f\u0002"+
+		"G\t\u0002\u0001\u0002\u0003\u0002J\b\u0002\u0001\u0002\u0003\u0002M\b"+
+		"\u0002\u0001\u0003\u0003\u0003P\b\u0003\u0001\u0003\u0001\u0003\u0001"+
+		"\u0003\u0001\u0003\u0001\u0003\u0005\u0003W\b\u0003\n\u0003\f\u0003Z\t"+
+		"\u0003\u0001\u0003\u0003\u0003]\b\u0003\u0001\u0003\u0003\u0003`\b\u0003"+
+		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004"+
+		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004"+
+		"\u0001\u0004\u0001\u0004\u0001\u0004\u0003\u0004q\b\u0004\u0001\u0005"+
+		"\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0003\u0005x\b\u0005"+
+		"\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006"+
+		"\u0003\u0006\u0080\b\u0006\u0001\u0007\u0001\u0007\u0001\u0007\u0003\u0007"+
+		"\u0085\b\u0007\u0001\u0007\u0003\u0007\u0088\b\u0007\u0001\u0007\u0001"+
+		"\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0003"+
+		"\u0007\u0091\b\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0001"+
+		"\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0003\u0007\u009b\b\u0007\u0001"+
+		"\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0003"+
+		"\b\u00a6\b\b\u0001\t\u0001\t\u0001\t\u0001\t\u0001\t\u0001\t\u0001\t\u0003"+
+		"\t\u00af\b\t\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0003"+
+		"\n\u00b8\b\n\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b"+
+		"\u0001\u000b\u0001\u000b\u0003\u000b\u00c1\b\u000b\u0001\f\u0001\f\u0001"+
+		"\f\u0000\u0000\r\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014"+
+		"\u0016\u0018\u0000\u0007\u0002\u0000\u0002\u0002\t\t\u0001\u0000\u0005"+
+		"\u0006\u0001\u0000\u0005\b\u0001\u0000\u0015\u0016\u0001\u0000\u0012\u0013"+
+		"\u0001\u0000\u0017\u0018\u0001\u0000\u001a\u001b\u00dd\u0000\u001a\u0001"+
+		"\u0000\u0000\u0000\u00029\u0001\u0000\u0000\u0000\u0004L\u0001\u0000\u0000"+
+		"\u0000\u0006_\u0001\u0000\u0000\u0000\bp\u0001\u0000\u0000\u0000\nw\u0001"+
+		"\u0000\u0000\u0000\f\u007f\u0001\u0000\u0000\u0000\u000e\u009a\u0001\u0000"+
+		"\u0000\u0000\u0010\u00a5\u0001\u0000\u0000\u0000\u0012\u00ae\u0001\u0000"+
+		"\u0000\u0000\u0014\u00b7\u0001\u0000\u0000\u0000\u0016\u00c0\u0001\u0000"+
+		"\u0000\u0000\u0018\u00c2\u0001\u0000\u0000\u0000\u001a\u001b\u0003\u0002"+
+		"\u0001\u0000\u001b\u001c\u0005\u0000\u0000\u0001\u001c\u0001\u0001\u0000"+
+		"\u0000\u0000\u001d\u001e\u0005\f\u0000\u0000\u001e#\u0003\u0004\u0002"+
+		"\u0000\u001f \u0005\u0004\u0000\u0000 \"\u0003\u0004\u0002\u0000!\u001f"+
+		"\u0001\u0000\u0000\u0000\"%\u0001\u0000\u0000\u0000#!\u0001\u0000\u0000"+
+		"\u0000#$\u0001\u0000\u0000\u0000$\'\u0001\u0000\u0000\u0000%#\u0001\u0000"+
+		"\u0000\u0000&(\u0007\u0000\u0000\u0000\'&\u0001\u0000\u0000\u0000\'(\u0001"+
+		"\u0000\u0000\u0000()\u0001\u0000\u0000\u0000)*\u0005\u0000\u0000\u0001"+
+		"*:\u0001\u0000\u0000\u0000+,\u0005\r\u0000\u0000,1\u0003\u0006\u0003\u0000"+
+		"-.\u0005\u0004\u0000\u0000.0\u0003\u0006\u0003\u0000/-\u0001\u0000\u0000"+
+		"\u000003\u0001\u0000\u0000\u00001/\u0001\u0000\u0000\u000012\u0001\u0000"+
+		"\u0000\u000025\u0001\u0000\u0000\u000031\u0001\u0000\u0000\u000046\u0007"+
+		"\u0000\u0000\u000054\u0001\u0000\u0000\u000056\u0001\u0000\u0000\u0000"+
+		"67\u0001\u0000\u0000\u000078\u0005\u0000\u0000\u00018:\u0001\u0000\u0000"+
+		"\u00009\u001d\u0001\u0000\u0000\u00009+\u0001\u0000\u0000\u0000:\u0003"+
+		"\u0001\u0000\u0000\u0000;=\u0007\u0001\u0000\u0000<;\u0001\u0000\u0000"+
+		"\u0000<=\u0001\u0000\u0000\u0000=>\u0001\u0000\u0000\u0000>?\u0003\b\u0004"+
+		"\u0000?@\u0005\u0003\u0000\u0000@E\u0003\u0010\b\u0000AB\u0005\u0002\u0000"+
+		"\u0000BD\u0003\u0010\b\u0000CA\u0001\u0000\u0000\u0000DG\u0001\u0000\u0000"+
+		"\u0000EC\u0001\u0000\u0000\u0000EF\u0001\u0000\u0000\u0000FM\u0001\u0000"+
+		"\u0000\u0000GE\u0001\u0000\u0000\u0000HJ\u0007\u0001\u0000\u0000IH\u0001"+
+		"\u0000\u0000\u0000IJ\u0001\u0000\u0000\u0000JK\u0001\u0000\u0000\u0000"+
+		"KM\u0003\b\u0004\u0000L<\u0001\u0000\u0000\u0000LI\u0001\u0000\u0000\u0000"+
+		"M\u0005\u0001\u0000\u0000\u0000NP\u0007\u0001\u0000\u0000ON\u0001\u0000"+
+		"\u0000\u0000OP\u0001\u0000\u0000\u0000PQ\u0001\u0000\u0000\u0000QR\u0003"+
+		"\b\u0004\u0000RS\u0005\u0003\u0000\u0000SX\u0003\u000e\u0007\u0000TU\u0005"+
+		"\u0002\u0000\u0000UW\u0003\u000e\u0007\u0000VT\u0001\u0000\u0000\u0000"+
+		"WZ\u0001\u0000\u0000\u0000XV\u0001\u0000\u0000\u0000XY\u0001\u0000\u0000"+
+		"\u0000Y`\u0001\u0000\u0000\u0000ZX\u0001\u0000\u0000\u0000[]\u0007\u0001"+
+		"\u0000\u0000\\[\u0001\u0000\u0000\u0000\\]\u0001\u0000\u0000\u0000]^\u0001"+
+		"\u0000\u0000\u0000^`\u0003\b\u0004\u0000_O\u0001\u0000\u0000\u0000_\\"+
+		"\u0001\u0000\u0000\u0000`\u0007\u0001\u0000\u0000\u0000aq\u0003\n\u0005"+
+		"\u0000bc\u0003\n\u0005\u0000cd\u0005\u0010\u0000\u0000de\u0003\u0018\f"+
+		"\u0000eq\u0001\u0000\u0000\u0000fg\u0005\n\u0000\u0000gh\u0003\n\u0005"+
+		"\u0000hi\u0005\u000b\u0000\u0000ij\u0005\u0010\u0000\u0000jk\u0003\u0018"+
+		"\f\u0000kq\u0001\u0000\u0000\u0000lm\u0005\n\u0000\u0000mn\u0003\n\u0005"+
+		"\u0000no\u0005\u000b\u0000\u0000oq\u0001\u0000\u0000\u0000pa\u0001\u0000"+
+		"\u0000\u0000pb\u0001\u0000\u0000\u0000pf\u0001\u0000\u0000\u0000pl\u0001"+
+		"\u0000\u0000\u0000q\t\u0001\u0000\u0000\u0000rx\u0003\f\u0006\u0000st"+
+		"\u0003\f\u0006\u0000tu\u0007\u0002\u0000\u0000uv\u0003\u0018\f\u0000v"+
+		"x\u0001\u0000\u0000\u0000wr\u0001\u0000\u0000\u0000ws\u0001\u0000\u0000"+
+		"\u0000x\u000b\u0001\u0000\u0000\u0000yz\u0005\u0001\u0000\u0000z\u0080"+
+		"\u0003\u0018\f\u0000{|\u0003\u0018\f\u0000|}\u0005\u0001\u0000\u0000}"+
+		"~\u0003\u0018\f\u0000~\u0080\u0001\u0000\u0000\u0000\u007fy\u0001\u0000"+
+		"\u0000\u0000\u007f{\u0001\u0000\u0000\u0000\u0080\r\u0001\u0000\u0000"+
+		"\u0000\u0081\u0087\u0005\u0014\u0000\u0000\u0082\u0088\u0003\u000e\u0007"+
+		"\u0000\u0083\u0085\u0005\u0006\u0000\u0000\u0084\u0083\u0001\u0000\u0000"+
+		"\u0000\u0084\u0085\u0001\u0000\u0000\u0000\u0085\u0086\u0001\u0000\u0000"+
+		"\u0000\u0086\u0088\u0003\u0018\f\u0000\u0087\u0082\u0001\u0000\u0000\u0000"+
+		"\u0087\u0084\u0001\u0000\u0000\u0000\u0088\u009b\u0001\u0000\u0000\u0000"+
+		"\u0089\u008a\u0005\u0014\u0000\u0000\u008a\u008b\u0007\u0003\u0000\u0000"+
+		"\u008b\u009b\u0003\u0018\f\u0000\u008c\u008d\u0005\u0014\u0000\u0000\u008d"+
+		"\u008e\u0003\u0018\f\u0000\u008e\u0090\u0005\u0010\u0000\u0000\u008f\u0091"+
+		"\u0005\u0006\u0000\u0000\u0090\u008f\u0001\u0000\u0000\u0000\u0090\u0091"+
+		"\u0001\u0000\u0000\u0000\u0091\u0092\u0001\u0000\u0000\u0000\u0092\u0093"+
+		"\u0003\u0018\f\u0000\u0093\u009b\u0001\u0000\u0000\u0000\u0094\u0095\u0005"+
+		"\u001c\u0000\u0000\u0095\u009b\u0003\u0012\t\u0000\u0096\u0097\u0005\u001d"+
+		"\u0000\u0000\u0097\u009b\u0003\u0014\n\u0000\u0098\u0099\u0005\u001e\u0000"+
+		"\u0000\u0099\u009b\u0003\u0016\u000b\u0000\u009a\u0081\u0001\u0000\u0000"+
+		"\u0000\u009a\u0089\u0001\u0000\u0000\u0000\u009a\u008c\u0001\u0000\u0000"+
+		"\u0000\u009a\u0094\u0001\u0000\u0000\u0000\u009a\u0096\u0001\u0000\u0000"+
+		"\u0000\u009a\u0098\u0001\u0000\u0000\u0000\u009b\u000f\u0001\u0000\u0000"+
+		"\u0000\u009c\u009d\u0007\u0004\u0000\u0000\u009d\u009e\u0005\u0011\u0000"+
+		"\u0000\u009e\u00a6\u0003\u0018\f\u0000\u009f\u00a0\u0005\u001c\u0000\u0000"+
+		"\u00a0\u00a6\u0003\u0012\t\u0000\u00a1\u00a2\u0005\u001d\u0000\u0000\u00a2"+
+		"\u00a6\u0003\u0014\n\u0000\u00a3\u00a4\u0005\u001e\u0000\u0000\u00a4\u00a6"+
+		"\u0003\u0016\u000b\u0000\u00a5\u009c\u0001\u0000\u0000\u0000\u00a5\u009f"+
+		"\u0001\u0000\u0000\u0000\u00a5\u00a1\u0001\u0000\u0000\u0000\u00a5\u00a3"+
+		"\u0001\u0000\u0000\u0000\u00a6\u0011\u0001\u0000\u0000\u0000\u00a7\u00a8"+
+		"\u0007\u0003\u0000\u0000\u00a8\u00af\u0003\u0018\f\u0000\u00a9\u00af\u0007"+
+		"\u0005\u0000\u0000\u00aa\u00ab\u0003\u0018\f\u0000\u00ab\u00ac\u0007\u0006"+
+		"\u0000\u0000\u00ac\u00af\u0001\u0000\u0000\u0000\u00ad\u00af\u0003\u0018"+
+		"\f\u0000\u00ae\u00a7\u0001\u0000\u0000\u0000\u00ae\u00a9\u0001\u0000\u0000"+
+		"\u0000\u00ae\u00aa\u0001\u0000\u0000\u0000\u00ae\u00ad\u0001\u0000\u0000"+
+		"\u0000\u00af\u0013\u0001\u0000\u0000\u0000\u00b0\u00b1\u0007\u0003\u0000"+
+		"\u0000\u00b1\u00b8\u0003\u0018\f\u0000\u00b2\u00b8\u0007\u0005\u0000\u0000"+
+		"\u00b3\u00b4\u0003\u0018\f\u0000\u00b4\u00b5\u0007\u0006\u0000\u0000\u00b5"+
+		"\u00b8\u0001\u0000\u0000\u0000\u00b6\u00b8\u0003\u0018\f\u0000\u00b7\u00b0"+
+		"\u0001\u0000\u0000\u0000\u00b7\u00b2\u0001\u0000\u0000\u0000\u00b7\u00b3"+
+		"\u0001\u0000\u0000\u0000\u00b7\u00b6\u0001\u0000\u0000\u0000\u00b8\u0015"+
+		"\u0001\u0000\u0000\u0000\u00b9\u00ba\u0007\u0003\u0000\u0000\u00ba\u00c1"+
+		"\u0003\u0018\f\u0000\u00bb\u00c1\u0007\u0005\u0000\u0000\u00bc\u00bd\u0003"+
+		"\u0018\f\u0000\u00bd\u00be\u0007\u0006\u0000\u0000\u00be\u00c1\u0001\u0000"+
+		"\u0000\u0000\u00bf\u00c1\u0003\u0018\f\u0000\u00c0\u00b9\u0001\u0000\u0000"+
+		"\u0000\u00c0\u00bb\u0001\u0000\u0000\u0000\u00c0\u00bc\u0001\u0000\u0000"+
+		"\u0000\u00c0\u00bf\u0001\u0000\u0000\u0000\u00c1\u0017\u0001\u0000\u0000"+
+		"\u0000\u00c2\u00c3\u0005\u001f\u0000\u0000\u00c3\u0019\u0001\u0000\u0000"+
+		"\u0000\u0018#\'159<EILOX\\_pw\u007f\u0084\u0087\u0090\u009a\u00a5\u00ae"+
+		"\u00b7\u00c0";
+	public static final ATN _ATN =
+		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
+	static {
+		_decisionToDFA = new DFA[_ATN.getNumberOfDecisions()];
+		for (int i = 0; i < _ATN.getNumberOfDecisions(); i++) {
+			_decisionToDFA[i] = new DFA(_ATN.getDecisionState(i), i);
+		}
+	}
+}

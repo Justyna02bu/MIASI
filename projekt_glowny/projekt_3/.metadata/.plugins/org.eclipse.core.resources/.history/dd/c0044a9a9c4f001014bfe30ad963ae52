@@ -1,0 +1,61 @@
+package org.xtext.example.mydsl.ui.handlers;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ui.handlers.HandlerUtil;
+import org.xtext.example.mydsl.ui.antler.src.ExprLexer;
+import org.xtext.example.mydsl.ui.antler.src.ExprParser;
+import org.xtext.example.mydsl.ui.antler.src.DiceVisitor;
+
+public class RunAntlrParserHandler extends AbstractHandler {
+
+    @Override
+    public Object execute(ExecutionEvent event) throws ExecutionException {
+        IStructuredSelection selection = (IStructuredSelection) HandlerUtil.getCurrentSelection(event);
+        Object firstElement = selection.getFirstElement();
+
+        if (firstElement instanceof IFile iFile) {
+            String path = iFile.getLocation().toOSString();
+
+            try {
+                String input = Files.readString(Paths.get(path));
+                var lexer = new ExprLexer(CharStreams.fromString(input));
+                var tokens = new CommonTokenStream(lexer);
+                var parser = new ExprParser(tokens);
+
+                var tree = parser.start(); // główna reguła
+                var visitor = new DiceVisitor();
+                var result = visitor.visit(tree);
+
+                MessageDialog.openInformation(HandlerUtil.getActiveShell(event),
+                        "Wynik działania parsera ANTLR",
+                        "Wynik: " + result.toString());
+
+            } catch (IOException e) {
+                MessageDialog.openError(HandlerUtil.getActiveShell(event),
+                        "Błąd odczytu",
+                        "Nie można odczytać pliku:\n" + path);
+                e.printStackTrace();
+            } catch (Exception e) {
+                MessageDialog.openError(HandlerUtil.getActiveShell(event),
+                        "Błąd przetwarzania",
+                        e.getMessage());
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+}

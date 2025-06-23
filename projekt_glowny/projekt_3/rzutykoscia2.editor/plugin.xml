@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated rzutykoscia21 -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="Rzutykoscia.presentation.RzutykosciaModelWizardID"
+            name="%_UI_RzutykosciaModelWizard_label"
+            class="Rzutykoscia.presentation.RzutykosciaModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/RzutykosciaModelFile.gif">
+         <description>%_UI_RzutykosciaModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated rzutykoscia21 -->
+      <editor
+            id="Rzutykoscia.presentation.RzutykosciaEditorID"
+            name="%_UI_RzutykosciaEditor_label"
+            icon="icons/full/obj16/RzutykosciaModelFile.gif"
+            extensions="rzutykoscia"
+            class="Rzutykoscia.presentation.RzutykosciaEditor"
+            contributorClass="Rzutykoscia.presentation.RzutykosciaActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
