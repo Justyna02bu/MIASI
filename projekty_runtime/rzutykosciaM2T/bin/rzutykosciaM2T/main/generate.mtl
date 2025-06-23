@@ -1,0 +1,98 @@
+[comment encoding = UTF-8 /]
+[**
+ * The documentation of the module generate.
+ */]
+[module generate('http://www.example.org/rzutykoscia')]
+
+[**
+ * The documentation of the template generateElement.
+ * @param aLanguage
+ */]
+[template public generateElement(aLanguage : Language)]
+[comment @main/]
+[file ('Rzut', false, 'UTF-8')]
+[if (aLanguage.statement.oclIsTypeOf(SumStatement))]Sumuj
+[for (a : DiceExprSum | aLanguage.statement.eContents(DiceExprSum)) separator(';\n')][writeDice(a)/][if (not a.sumrule->isEmpty())]:[/if][for (s : SumRule | a.sumrule) separator(', ')][writeSum(s)/][/for][/for]
+[elseif (aLanguage.statement.oclIsTypeOf(SuccessStatement))]Sukcesy
+[for (a : DiceExprSuk | aLanguage.statement.eContents(DiceExprSuk)) separator(';\n')][writeDice(a)/]:[for (s : SuccessRule | a.successrule) separator(', ')][writeSuccess(s)/][/for][/for]
+[/if]
+[/file]
+[/template]
+
+[comment Wypisuje informacje o rzucanych kościach i ich modyfikatorach (np. "(2d10 + 3) razy 2")/]
+[template public writeDice(aDiceExpr : DiceExpr) post(trim())]
+[writeSign(aDiceExpr.sign)/][if (not aDiceExpr.mulexpr.num.oclIsUndefined() and aDiceExpr.mulexpr.num.value<>0)]([/if][if (aDiceExpr.mulexpr.formexpr.left.oclIsTypeOf(MultiDice))][aDiceExpr.mulexpr.formexpr.left.oclAsType(MultiDice).count.value/][/if]d[aDiceExpr.mulexpr.formexpr.left.sides.value/][if (not aDiceExpr.mulexpr.formexpr.right.oclIsUndefined())][writeOperator(aDiceExpr.mulexpr.formexpr.operator)/][aDiceExpr.mulexpr.formexpr.right.value/][/if][if (not aDiceExpr.mulexpr.num.oclIsUndefined() and aDiceExpr.mulexpr.num.value<>0)]) razy [aDiceExpr.mulexpr.num.value/][/if]
+[/template]
+
+[comment Rozpozaje rodzaj warunku przy słowie kluczowym "Sumuj" i wywołuje odpowiedni szablon/]
+[template public writeSum(aSumRule : SumRule) post (trim())]
+[if (aSumRule.oclIsTypeOf(ExplosionRule))] [if (aSumRule.oclAsType(ExplosionRule).sign.toString()='ADD')]dodawaj [elseif (aSumRule.oclAsType(ExplosionRule).sign.toString()='SUB')]odejmuj [/if]wybuchowe [aSumRule.oclAsType(ExplosionRule).num.value/]
+[elseif (aSumRule.oclIsTypeOf(DiceMarkSum))] [writeMark(aSumRule.oclAsType(DiceMarkSum).mark)/]
+[elseif (aSumRule.oclIsTypeOf(DiceDiscSum))] [writeDiscard(aSumRule.oclAsType(DiceDiscSum).discard)/]
+[elseif (aSumRule.oclIsTypeOf(DiceRerollSum))] [writeReroll(aSumRule.oclAsType(DiceRerollSum).reroll)/]
+[/if]
+[/template]
+
+[comment Rozpozaje rodzaj warunku przy słowie kluczowym "Sukcesy" i wywołuje odpowiedni szablon/]
+[template public writeSuccess(aSuccessRule : SuccessRule) post (trim())]
+[if (aSuccessRule.oclIsTypeOf(SuccessBasic))]sukces [aSuccessRule.oclAsType(SuccessBasic).num.value /]
+[elseif (aSuccessRule.oclIsTypeOf(SuccessThreshold))]sukces [writeHighLowCompare(aSuccessRule.oclAsType(SuccessThreshold).hightlow)/] [aSuccessRule.oclAsType(SuccessThreshold).num.value/]
+[elseif (aSuccessRule.oclIsTypeOf(SuccessMultiplier))]sukces [aSuccessRule.oclAsType(SuccessMultiplier).num.value/] razy [if aSuccessRule.oclAsType(SuccessMultiplier).sign.toString() = 'SUB']-[/if][aSuccessRule.oclAsType(SuccessMultiplier).mult.value/]
+[elseif (aSuccessRule.oclIsTypeOf(DiceMarkSuk))] [writeMark(aSuccessRule.oclAsType(DiceMarkSuk).mark)/]
+[elseif (aSuccessRule.oclIsTypeOf(DiceDiscSuk))] [writeDiscard(aSuccessRule.oclAsType(DiceDiscSuk).discard)/]
+[elseif (aSuccessRule.oclIsTypeOf(DiceRerollSuk))] [writeReroll(aSuccessRule.oclAsType(DiceRerollSuk).reroll)/]
+[elseif (aSuccessRule.oclIsTypeOf(SuccessCompositeRule))] [writeSuccess(aSuccessRule.oclAsType(SuccessCompositeRule).successrule)/]
+[/if]
+[/template]
+
+[comment Wypisuje informacje związane ze słowem kluczowym "oznacz"/]
+[template public writeMark(aMark : Mark) post (trim())]
+[if (aMark.oclIsTypeOf(MarkThan))]oznacz [writeHighLowCompare(aMark.oclAsType(MarkThan).hightlow)/] [aMark.oclAsType(MarkThan).num.value/]
+[elseif (aMark.oclIsTypeOf(MarkHigh))]oznacz [writeHighLowMax(aMark.oclAsType(MarkHigh).hightlow)/]
+[elseif (aMark.oclIsTypeOf(MarkKol))]oznacz [aMark.oclAsType(MarkKol).num.value/] [writeFirstLast(aMark.oclAsType(MarkKol).firstlast)/]
+[elseif (aMark.oclIsTypeOf(MarkNum))]oznacz [aMark.oclAsType(MarkNum).num.value/]
+[/if]
+[/template]
+
+[comment Wypisuje informacje związane ze słowem kluczowym "odrzuc"/]
+[template public writeDiscard(aDiscard : Discard) post (trim())]
+[if (aDiscard.oclIsTypeOf(DiscardThan))]odrzuc [writeHighLowCompare(aDiscard.oclAsType(DiscardThan).hightlow)/] [aDiscard.oclAsType(DiscardThan).num.value/]
+[elseif (aDiscard.oclIsTypeOf(DiscardHigh))]odrzuc [writeHighLowMax(aDiscard.oclAsType(DiscardHigh).hightlow)/]
+[elseif (aDiscard.oclIsTypeOf(DiscardKol))]odrzuc [aDiscard.oclAsType(DiscardKol).num.value/] [writeFirstLast(aDiscard.oclAsType(DiscardKol).firstlast)/]
+[elseif (aDiscard.oclIsTypeOf(DiscardNum))]odrzuc [aDiscard.oclAsType(DiscardNum).num.value/]
+[/if]
+[/template]
+
+[comment Wypisuje informacje związane ze słowem kluczowym "przerzuc"/]
+[template public writeReroll(aReroll : Reroll) post (trim())]
+[if (aReroll.oclIsTypeOf(RerollThan))]przerzuc [writeHighLowCompare(aReroll.oclAsType(RerollThan).hightlow)/] [aReroll.oclAsType(RerollThan).num.value/]
+[elseif (aReroll.oclIsTypeOf(RerollHigh))]przerzuc [writeHighLowMax(aReroll.oclAsType(RerollHigh).hightlow)/]
+[elseif (aReroll.oclIsTypeOf(RerollKol))]przerzuc [aReroll.oclAsType(RerollKol).num.value/] [writeFirstLast(aReroll.oclAsType(RerollKol).firstlast)/]
+[elseif (aReroll.oclIsTypeOf(RerollNum))]przerzuc [aReroll.oclAsType(RerollNum).num.value/]
+[/if]
+[/template]
+
+[comment Wypisuje znak na podstawie wartości węzła "Sign"/]
+[template public writeSign(aSign : Sign) post (trim())]
+[if (aSign.toString()='ADD')]+[elseif (aSign.toString()='SUB')]-[/if]
+[/template]
+
+[comment Wypisuje znak na podstawie wartości węzła "Operator"/]
+[template public writeOperator(aOperator : Operator) post (trim())]
+[if (aOperator.toString()='ADD')]+[elseif (aOperator.toString()='SUB')]-[elseif (aOperator.toString()='MUL')]*[else]/[/if]
+[/template]
+
+[comment Wypisuje "więcej/mniej niz" na podstawie wartości węzła "HighLow"/]
+[template public writeHighLowCompare(aHighLow : HighLow) post (trim())]
+[if (aHighLow.toString()='HIGH')]wiecej niz [else]mniej niz[/if]
+[/template]
+
+[comment Wypisuje "najwyzsze/najnizsze" na podstawie wartości węzła "HighLow"/]
+[template public writeHighLowMax(aHighLow : HighLow) post (trim())]
+[if (aHighLow.toString()='HIGH')]najwyzsze [else]najnizsze [/if]
+[/template]
+
+[comment Wypisuje "pierwsze/ostatnie" na podstawie wartości węzła "FirstLast"/]
+[template public writeFirstLast(aFirstLast : FirstLast) post (trim())]
+[if (aFirstLast.toString()='FIRST')]pierwsze [else]ostatnie [/if]
+[/template]
